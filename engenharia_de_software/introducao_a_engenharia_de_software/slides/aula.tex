@@ -1,0 +1,143 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+
+\title{Introdução à Engenharia de \textit{Software}}
+\author{Ártus Bolzanni}
+\date{2022.2}
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \titlepage
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Sistema de informação}
+      \begin{itemize}
+        \item Os dados têm, como origem, diversas fontes.
+        \item Além disso, o processamento de dados (transformação de dados em informação) é realizado por diversas partes que se relacionam em maior ou menor grau.
+        \item A este conjunto de partes, dá-se o nome de sistema de informação.
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Sistema de informação}
+      Um sistema de informação é responsável por:
+      \begin{itemize}
+        \item estruturar os dados;
+        \item transformar os dados;
+        \item distribuir a informação.
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Sistemas de informação}
+      \begin{itemize}
+        \item Os sistemas de informação são mais antigos que o computador.
+        \item Então, o uso de sistemas de informação não está obrigatoriamente atrelado ao uso de \textit{softwares}.
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Engenharia de \textit{Software}}
+      \begin{itemize}
+        \item Produzir \textit{software} não é algo simples.
+        \item O \textit{software}, no fim das contas, é a tradução de um processo de negócio realizado pelo ser humano para o computador.
+      \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Engenharia de \textit{Software}}
+      \begin{itemize}
+        \item Para dificultar mais ainda, esses processos de negócio mudam constantemente devido a diversos fatores:
+        \begin{itemize}
+          \item políticos (internos e externos);
+          \item econômicos;
+          \item tecnológicos.
+        \end{itemize}
+      \end{itemize}
+    \end{frame}
+    
+   \begin{frame}
+      \frametitle{Engenharia de \textit{Software}}
+      \begin{itemize}
+        \item O ser humano não começou a desenvolver \textit{software} a tão pouco tempo.
+        \item Pelo contrário, está a desenvolver \textit{software} há décadas e, entre acertos e falhas, descobriu processos e ferramentas que o auxiliam a diminuir as falhas no desenvolvimento de \textit{software}.
+        \item A este arcabouço teórico e prático, dá-se o nome de \textbf{Engenharia de \textit{Software}}.
+      \end{itemize}
+   \end{frame}
+        
+   \begin{frame}
+      \frametitle{Engenharia de \textit{Software}}
+      \begin{itemize}
+        \item A Engenharia de \textit{Software} foi inicialmente proposta em 1968 em uma Conferência.
+        \item Até então, o desenvolvimento de \textit{software} era realizado de maneira bastante precária do ponto de vista da organização.
+        \item Não havia um conjunto de boas práticas e organização.
+        \item Isto levou à alta taxa de falha nos projetos de desenvolvimento de \textit{software}, além da entrega de produtos com qualidade aquém do esperado.
+      \end{itemize}
+   \end{frame}   
+   
+   \begin{frame}
+      \frametitle{Engenharia de \textit{Software}}
+      \begin{itemize}
+        \item Para tentar resolver este problema, a Engenharia de \textit{Software} surge como uma disciplina que estuda, de maneira sistemática e organizada, os seguintes aspectos do desenvolvimento de \textit{software}:
+        \begin{itemize}
+           \item atividades;
+           \item métodos;
+           \item ferramentas;
+           \item teorias;
+           \item técnicas
+        \end{itemize}
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}
+      \frametitle{Engenharia de \textit{Software}}
+      \begin{itemize}
+        \item Um ponto importante a ser salientado é que a Engenharia de \textit{Software} não estabelece uma resposta única para todos os problemas.
+        \item Um \textit{software} para \textit{e-commerce} não deve ser desenvolvido da mesma maneira que um sistema embarcado para aviões.
+        \item Apesar de haver características semelhantes (afinal, é tudo \textit{software}), a natureza de cada \textit{software}, seu contexto de uso, o tempo de desenvolvimento, seus custos associados, além de outros fatores são o que definirá as atividades, métodos, ferramentas e técnicas a serem utilizadas pela equipe de desenvolvimento.
+        \item Em outras palavras, não há bala de prata.
+      \end{itemize}
+   \end{frame}
+    
+    \begin{frame}
+      \frametitle{Processo de \textit{software} $\times$ Produto de software}
+      \begin{itemize}
+        \item Outro ponto a ser observado é se o processo de negócio já existe ou não.
+        \item Nos primórdios do desenvolvimento de \textit{software}, os processos de negócio já existiam nas empresas e nos governos e eram traduzidos para \textit{software}.
+        \item Este tipo de atividade gera dependência da maturidade e a definição do processo de negócio.
+        \item Mais do que isso, gera a necessidade de um processo de desenvolvimento de \textit{software} bastante formal.
+      \end{itemize}
+    \end{frame}	    
+    
+    \begin{frame}
+      \frametitle{Processo de \textit{software} $\times$ Produto de software}
+      \begin{itemize}
+        \item Por outro lado, vem ganhando força nas duas últimas décadas o foco no produto de \textit{software} e não no processo de \textit{software}.
+        \item Isto quer dizer, a criação de \textit{software} é não atrelada obrigatoriamente a necessidades já existentes, mas a oportunidades.
+        \item As redes sociais são um exemplo disso. Elas surgiram por observação de uma oportunidade e não por um processo de negócio já existente.
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Processo de \textit{software} $\times$ Produto de software}
+      \begin{itemize}
+        \item Entretanto, produto de \textit{software} não é algo novo ou revolucionário.
+        \item Pelo contrário, \textit{softwares} de prateleira, como soluções para comércio ou \textit{softwares} de escritório, já existem há muito tempo.
+        \item Entretanto, esses \textit{softwares} de prateleira e os softwares desta nova geração não podem ser colocados num mesmo grupo.
+        \item Em aulas futuras veremos o que os diferencia tanto.
+      \end{itemize}
+    \end{frame}
+
+\end{document}
