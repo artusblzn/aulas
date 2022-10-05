@@ -1,0 +1,141 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+
+\title{Produto de \textit{Software}}
+\author{}
+\date{}
+
+\begin{document}
+
+   \begin{frame}[plain]
+        \titlepage
+   \end{frame}
+
+   \section{Introdução}
+
+   \begin{frame}{Engenharia de de \textit{software}}
+      \begin{itemize}
+         \item A Engenharia de \textit{Software} surgiu nos anos 70 para transpor os processos de negócio em \textit{software} customizável.
+         \item Os requisitos vinham dos clientes e eram refinados junto à equipe de desenvolvimento.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Engenharia de \textit{software} ontem e hoje}
+      \begin{itemize}
+         \item O foco no projeto de \textit{software} dominou a indústria por mais de duas décadas e moldou todo conjunto de conhecimentos que compõem a Engenharia de \textit{Software}.
+         \item Quanto mais os processos de negócio se desenvolveram, mais notável se tornou a percepção que muitos negócios não precisavam de \textit{software} customizado.
+         \item Produtos genéricos de \textit{software} podem muito bem atender a diversos problemas de negócio simples.
+      \end{itemize}
+   \end{frame}
+   
+   \begin{frame}{Produto de \textit{software}}
+      \begin{mydef}
+         "Produtos de \textit{software} são sistemas computacionais genéricos vendidos a governos, empresas e consumidores." (Sommerville, 2020, trad. nossa)
+      \end{mydef}
+   \end{frame}
+
+   \begin{frame}{Produto de \textit{software}}
+      Desenhados para:
+      \begin{itemize}
+         \item suporte a processos de negócio;
+         \item ferramentas de produtividade;
+         \item jogos;
+         \item sistemas de informação pessoal.
+      \end{itemize}
+   \end{frame}
+
+   \section{Projeto de \textit{software} $\times$ Produto de \textit{software}}
+
+   \begin{frame}{Projeto de \textit{software} $\times$ Produto de \textit{software}}
+      \begin{itemize}
+         \item Um das diferenças maiores entre projeto e produto de \textit{software} se dá nos requisitos.
+         \item No projeto de \textit{software}, o cliente define os requisitos e paga por eles.
+         \item Se o processo do cliente muda, então mudam os requisitos.
+         \item No produto de \textit{software}, quem define os requisitos é o desenvolvedor (empresa) baseado na observação dos problemas de potenciais clientes.      
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Projeto de \textit{software} $\times$ Produto de \textit{software}}
+      \begin{itemize}
+         \item O custo do projeto de \textit{software} tende a ser mais baixo para o cliente, pois o custo de produção é dividido entre mais clientes.
+         \item Sommerville afirma que o controle do produto de \textit{software} pelo desenvolvedor gera mais riscos para o cliente.
+         \item Isso é discutível. Dependerá do contrato.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Projeto de \textit{software} $\times$ Produto de \textit{software}}
+      \begin{itemize}
+         \item Sommerville também coloca que produtos excelentes comumente falham porque outros produtos inferiores chegam ao mercado primeiro.
+         \item Isso é também discutível. Depende de diversos fatores, como a expansão do mercado.
+         \item Por exemplo, a Amazon é a pioneira em \textit{Cloud Computing}, porém Google, Microsoft, Alibaba, IBM e outras conseguem algum nível de competição.
+         \item Outro exemplo foram as pioneiras Microsoft e Symbian nos \textit{smartphones}, mas foram logo ultrapassadas por Blackberry, Apple e demais.
+      \end{itemize}
+   \end{frame}
+
+   \section{Visão do produto}
+
+   \begin{frame}{Visão do produto}
+      \begin{itemize}
+         \item Segundo Sommerville, o ponto de partida para o desenvolvimento de um produto deveria ser a \textbf{visão do produto}.
+         \item Esta é a descrição sucinta e simples do produto a ser desenvolvido e o seu diferencial perante os concorrentes.
+         \item Todas funcionalidades e características do \textit{software} devem estar de acordo com a visão do produto.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Visão do produto}
+      Sommerville define três questionamentos que ambasam a criação da visão do produto, a saber:
+      \begin{itemize}
+         \item \textbf{O que} é o produto a ser desenvolvido? \textbf{O que} faz desse produto diferente dos seus competidores?
+         \item \textbf{Quem} é o público-alvo deste produto?
+         \item \textbf{Por que} clientes compram esse produto?
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Visão do produto}
+      No livro Crossing the Chasm, Geoffrey Moore sugere a seguinte estruturação para escrever a visão do produto baseada em palavras-chave:
+      \begin{itemize}
+         \item PARA (cliente alvo);
+         \item QUE (necessidade ou oportunidade);
+         \item O (nome do produto) É UM (categoria do produto);
+         \item QUE (benefício-chave ou razão para comprar);
+         \item DIFERENTE DE (competidor);
+         \item NOSSO PRODUTO (diferenciação).
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Visão do produto}
+      \textbf{PARA} estudantes surdos e professores, \textbf{QUE} necessitam de um portal educativo com \textit{interface} adaptada para o público surdo, \textbf{O} Portal Mão Amiga \textbf{É UM} \textit{software} gerenciador de conteúdo educacional \textbf{QUE} possui \textit{interace} completamente adaptada às necessidades dos alunos surdos. \textbf{DIFERENTE DO} Moodle e similares, \textbf{NOSSO PRODUTO} permite que o surdo acesse aos conteúdos sem auxílio de intérprete ou treinamento.
+   \end{frame}
+
+   \section{Prototipação}
+
+   \begin{frame}{Prototipação}
+      \begin{itemize}
+         \item Os produtos de \textit{software} surgem geralmente da identificação de oportunidades.
+         \item É sugerida criação de protótipo como resultado de uma primeira versão.
+         \item Um protótipo é uma ferramenta muito boa tanto para provar que a proposta de do produto é factível quanto para atrair investidores.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Prototipação}
+      \begin{itemize}
+         \item Para \textit{softwares} de uso interno, como os utilizados por grupos de pesquisa, um protótipo pode ser o bastante.
+         \item Quando este \textit{software} for utilizado externamente, recomenda-se "jogá-lo fora" e refazê-lo seguindos boas práticas e parâmetros de confiança e segurança.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Referências}
+      \begin{itemize}
+          \item Sommerville, Ian. Software Engineering - Global Edition. 10ed. 2016. Pearson Education.
+          \item Sommerville, Ian. Engineering Software Products: An Introduction to Modern Software Engineering. 1ed. 2021. Pearson Education. 
+      \end{itemize}
+   \end{frame}
+
+\end{document}
