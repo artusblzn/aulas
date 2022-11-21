@@ -119,7 +119,9 @@
       \end{itemize}
    \end{frame}
 
-   \begin{frame}{\textit{User Stories} - Cartão}
+   \subsection{INVEST}
+
+   \begin{frame}{\textit{User Stories} - INVEST}
       Bill Wake, famoso autor sobre métodos ágeis, criou o acrônimo INVEST para criação de boas \textit{user stories}:
       \begin{itemize}
          \item I - independente;
@@ -175,29 +177,75 @@
    \begin{frame}{\textit{User Stories} - Negociável}
       Os cartões devem possuir apenas a estória de usuário e, no máximo, um par de notas que servirão de lembrete para as discussões como no exemplo abaixo:
       \begin{itemize}
-         \item 
+         \item Estória: Eu, enquanto Cliente, desejo pagar pela compra usando cartão de crédito.
+         \item Nota: serão aceitos cartão da bandeira Discover?
+         \item Nota para UI: não colocar campo "bandeira", pois pode ser descoberto através dos primeiros números do cartão.
       \end{itemize}
    \end{frame}
 
-   \begin{frame}{\textit{User Stories} - Cartão}
+   \begin{frame}{\textit{User Stories} - Valiosa}
       \begin{itemize}
-         \item Uma estória de usuário deve ter o tamanho bastante para que seja implementada em até uma iteração.
-         \item Caso uma estória seja grande ou complexa demais, ela é chamada de \textit{epic} (épico) e deve ser dividida em mais de uma estória de usuário.
-         \item Alguns autores sugerem escrever épicos inicialmente e então dividi-los em estórias de usuário.
-         \item Porém isso não é regra e nem faz sentido criá-la.
+         \item As estórias de usuário devem ter valor para os usuários ou clientes.
+         \item Deve-se lembrar, que, do ponto de vista ágil e moderno, o importante é o produto a ser desenvolvido e o valor que ele agrega aos usuários e clientes.
       \end{itemize}
    \end{frame}
 
-   \begin{frame}{\textit{User Stories} - Cartão}
-       "Eu, enquanto usuário, desejo autenticar-me no sistema através de credenciais externas."
+   \begin{frame}{\textit{User Stories} - Estimável}
+      Estimar uma estória de usuário é reconhecer a complexidade da estória. Há três fontes principais para dificuldade, ou impossibilidade, de se estimar uma estória:
+      \begin{itemize}
+         \item os desenvolvedores não possuem conhecimento do domínio;
+         \item os desenvolvedores não possuem conhecimento técnico;
+         \item a estória é muito grande.
+      \end{itemize}
+      No primeiro caso, deve-se conversar com os criadores da estória.\\ 
+      No segundo, pode-se realizar um \textit{spike}, onde aos desenvolvedores é dado uma janela de tempo para conhecerem sobre a tecnologia.\\ 
+      Se a estória for muito grande, então é necessário dividi-la.
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      \begin{itemize}
+         \item O tamanho de uma estória de usuário é um problema.
+         \item A estória deve ser, a princípio, pequena.
+         \item Entretanto, se muito pequena, pode levar a uma quantidade muito grande de requisitos.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      Uma estória grande é chamada de épico. Os épicos são geralmente em dois tipos:
+      \begin{itemize}
+         \item estória composta;
+         \item estória complexa.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      A estória composta é um \textit{epic} (épico) que agrega diversas estórias de usuário. Por exemplo:\\
+
+      "Eu, enquanto usuário, desejo autenticar-me no sistema através de credenciais externas."
 \vspace{1cm}       
 
-       Pode ser quebrado em:
+      Pode ser quebrado em:
       \begin{itemize}
          \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais no Google."
          \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais no Facebook."
          \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais na Apple."
          \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais no Microsoft."
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      \begin{itemize}
+         \item A estória complexa é um \textit{epic} com uma ou mais partes com grau elevado de complexidade.
+         \item Isso ocorre quando o \textit{epic} deve estender algum algoritmo complexo ou criar um totalmente novo.
+         \item Geralmente são fortes candidatos a \textit{spike}.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Testável}
+      \begin{itemize}
+         \item As estórias de usuário devem ser prefencialmente testáveis do ponto de vista de testes automatizados.
+         \item Em alguns casos, especialmente em requisitos não funcionais, os testes não poderão ser automatizados.
+         \item  Ainda assim, estes devem ser a ínfima minoria.
       \end{itemize}
    \end{frame}
 
@@ -223,7 +271,7 @@
 
    \begin{frame}{\textit{User Stories} - Confirmação}
       Para a estória: ``Eu, enquanto Comprador, quero utilizar meu cartão de crédito no pagamento das minhas compras.''\\
-      Tem-se os seguintes critérios de aceitação:
+      Tem-se os seguintes critérios de aceitação (que poderão ficar no verso do cartão):
       \begin{enumerate}
          \item somente podemos aceitar cartões de crédito com bandeiras com que temos convênio.
          \item somente podemos aceitar cartões de crédito com data de expiração no futuro.
@@ -255,5 +303,14 @@
            \end{itemize}
       \end{itemize}
    \end{frame}
+
+   \begin{frame}{Referências}
+      \begin{itemize}
+          \item Sommerville, Ian. Software Engineering - Global Edition. 10ed. 2016. Pearson Education.
+          \item Sommerville, Ian. Engineering Software Products: An Introduction to Modern Software Engineering. 1ed. 2021. Pearson Education. 
+          \item Cohn, Mike. User Stories Applied: For Agile Software Development. 1ed. 2004. Addison Wesley.
+          \item K21 Global. Como é a user story? https://k21.global/pt/blog/como-e-a-user-story
+      \end{itemize}
+    \end{frame}
 
 \end{document}
