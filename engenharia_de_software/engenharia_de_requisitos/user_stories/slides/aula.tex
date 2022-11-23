@@ -1,0 +1,403 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ucs}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+\usepackage{pbox}
+\usepackage{multirow}
+
+\title{User stories}
+\author{}
+\date{}
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \titlepage
+    \end{frame}
+
+   \section{User Stories}
+
+   \begin{frame}{\textit{User Stories}}
+      \begin{itemize}
+         \item Nos métodos ágeis, uma maneira bastante utilizada para descrever os requisitos são as \textit{user stories} (estórias de usuário).
+         \item Uma \textit{user story} é uma descrição concisa de um requisito do ponto de vista do usuário.
+         \item Ela deve ser simples o bastante para que possa ser escrita em um pequeno cartão.
+         \item A \textit{user story} não descreve tudo que há de ser feito, mas serve como lembrete do que deverá ser feito.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories}}
+      Uma \textit{user story} é composta por três partes:
+      \begin{itemize}
+         \item cartão (descrição);
+         \item conversa (detalhes);
+         \item confirmação (testes).
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+      O cartão define três aspectos da \textit{user story}:
+      \begin{itemize}
+         \item quem? $\rightarrow$ interessado;
+         \item o quê? $\rightarrow$ necessidade;
+         \item por quê? $\rightarrow$ resultado.
+      \end{itemize}
+   \end{frame}
+
+   \subsection{Cartão}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+      "Eu, enquanto professor, desejo postar aulas com vídeo e outros materiais didáticos."
+\vspace{1cm}
+
+      Eu, enquanto \textbf{$<$PAPEL$>$}, desejo \textbf{$<$fazer algo$>$}.
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+      A \textit{user story} também pode conter uma razão ou justificativa, como:
+\vspace{1cm}
+       
+      "Eu, enquanto professor, desejo postar aulas com vídeo e outros materiais didáticos \textbf{para que meus estudantes surdos possam estudar em casa}."
+\vspace{1cm}
+
+      A justificativa em negrito não é obrigatória, mas ela pode ajudar os desenvolvedores em alguns contextos onde a funcionalidade não é tão clara.
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+      \begin{itemize}
+         \item A escrita a \textit{story} deve ser focada na solução e não no problema.
+         \item A \textit{story} deve ser sempre do ponto de vista do usuário.
+         \item O gerente de produto (ou cliente) deve estar atento a quem de fato é o usuário da funcionalidade e qual benefício este obterá.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+      \begin{itemize}
+         \item As estórias de usuário são colocadas no \textit{Product Backlog} (se você usar Scrum).
+         \item Deve-se evitar \textit{stories} negativas, pois é difícil implementar o que o sistema não deve fazer.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+       "Eu, enquanto usuário, não quero que o sistema grave e transmita minhas informações a servidores externos."
+\vspace{1cm}
+       
+       É melhor reescreve-la de uma maneira positiva:
+\vspace{.5cm}
+       
+       "Eu, enquanto usuário, desejo controlar a informação que é grava e transmitida a servidores externos para que eu garanta que minha informação pessoal não é compartilhada."
+    \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Cartão}
+      Segundo Mike Cohn, são boas práticas para escrita de \textit{user stories}:
+      \begin{itemize}
+         \item escrever primeiro estórias ligadas aos objetivos dos usuários;
+         \item escrever em voz ativa;
+         \item o cliente deve escrever a estória \footnote{sob supervisão, obviamente};
+         \item não numerar os cartões;
+         \item cartões são apenas um lembrete do que será discutido;
+         \item dividir estórias grandes ou complexas;
+      \end{itemize}
+   \end{frame}
+
+   \subsection{INVEST}
+
+   \begin{frame}{\textit{User Stories} - INVEST}
+      Bill Wake, famoso autor sobre métodos ágeis, criou o acrônimo INVEST para criação de boas \textit{user stories}:
+      \begin{itemize}
+         \item I - independente;
+         \item N - negociável;
+         \item V - valiosa;
+         \item E - estimável;
+         \item S - pequena (\textit{small});
+         \item T - testável.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Independente}
+      \begin{itemize}
+         \item As \textit{user stories} devem ser independentes entre si.
+         \item Se uma \textit{story} de alta prioridade depende de uma estória de baixa prioridade, então inverte-se a lógica de priorização, pois a estória menos valiosa deverá ser implementada primeiro.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Independente}
+      Outro problema da dependência entre \textit{user stories} é em relação a estimativas. Tenha-se as seguintes \textit{stories}:
+      \begin{itemize}
+         \item Eu, enquanto Cliente, desejo pagar pela compra usando um cartão Visa.
+         \item Eu, enquanto Cliente, desejo pagar pela compra usando um cartão MasterCard.
+         \item Eu, enquanto Cliente, desejo pagar pela compra usando um cartão American Express.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Independente}
+      \begin{itemize}
+         \item As três \textit{stories} são bastante similares e possuem complexidades quase idênticas.
+         \item A primeira será implementada em, talvez, 3 dias.
+         \item As demais, em 1 dia cada. 
+         \item As estimativas para a segunda e terceira \textit{stories} não corresponderão à realidade.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Independente}
+      Baseado em uma sugestão de Mike Cohn para problema similar, tem-se o seguinte reagrupamento das \textit{user stories}:
+      \begin{itemize}
+         \item Eu, enquanto Cliente, desejo pagar pela compra usando uma bandeira de cartão.
+         \item Eu, enquanto Cliente, desejo pagar pela compra usando outras duas bandeiras de cartão.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Negociável}
+      \begin{itemize}
+         \item O cartão da \textit{user story} não deve detalhar o requisito por completo.
+         \item Ele serve apenas como um lembrete gentil do que deverá ser feito.
+         \item No planejamento da iteração e em sua execução que devem ser discutidos os detalhes.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Negociável}
+      Os cartões devem possuir apenas a \textit{user story} e, no máximo, um par de notas que servirão de lembrete para as discussões como no exemplo abaixo:
+      \begin{itemize}
+         \item \textit{Story}: Eu, enquanto Cliente, desejo pagar pela compra usando cartão de crédito.
+         \item Nota: serão aceitos cartão da bandeira Discover?
+         \item Nota para UI: não colocar campo "bandeira", pois pode ser descoberto através dos primeiros números do cartão.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Valiosa}
+      \begin{itemize}
+         \item As \textit{user story} devem ter valor para os usuários ou clientes.
+         \item Deve-se lembrar, que, do ponto de vista ágil e moderno, o importante é o produto a ser desenvolvido e o valor que ele agrega aos usuários e clientes.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Estimável}
+      Estimar uma estória de usuário é reconhecer a complexidade da estória. Há três fontes principais para dificuldade, ou impossibilidade, de se estimar uma estória:
+      \begin{itemize}
+         \item os desenvolvedores não possuem conhecimento do domínio;
+         \item os desenvolvedores não possuem conhecimento técnico;
+         \item a \textit{story} é muito grande.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Estimável}
+      \begin{itemize}
+         \item No caso de falta de conhecimento do domínio, deve-se conversar com os criadores da estória.
+         \item No caso de falta de conhecimento técnico, pode-se realizar um \textit{spike}, onde aos desenvolvedores é dado uma janela de tempo para conhecerem sobre a tecnologia.
+         \item Se a \textit{story} for muito grande, então é necessário dividi-la.
+      \end{itemize}
+   \end{frame}
+
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      \begin{itemize}
+         \item O tamanho de uma \textit{story} de usuário é um problema.
+         \item A \textit{story} deve ser, a princípio, pequena.
+         \item Entretanto, se muito pequena, pode levar a uma quantidade muito grande de requisitos.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      Uma \textit{story} grande é chamada de épico. Os épicos são geralmente em dois tipos:
+      \begin{itemize}
+         \item \textit{story} composta;
+         \item \textit{story} complexa.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      A \textit{story} composta é um \textit{epic} (épico) que agrega diversas estórias de usuário. Por exemplo:\\
+
+      "Eu, enquanto usuário, desejo autenticar-me no sistema através de credenciais externas."
+\vspace{1cm}       
+
+      Pode ser quebrado em:
+      \begin{itemize}
+         \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais no Google."
+         \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais no Facebook."
+         \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais na Apple."
+         \item "Eu, enquanto usuário, desejo autenticar-me no sistema através das minhas credenciais no Microsoft."
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Pequena (\textit{Small})}
+      \begin{itemize}
+         \item A \textit{story} complexa é um \textit{epic} com uma ou mais partes com grau elevado de complexidade.
+         \item Isso ocorre quando o \textit{epic} deve estender algum algoritmo complexo ou criar um totalmente novo.
+         \item Geralmente são fortes candidatos a \textit{spike}.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Testável}
+      \begin{itemize}
+         \item As \textit{user stories} devem ser prefencialmente testáveis do ponto de vista de testes automatizados.
+         \item Em alguns casos, especialmente em requisitos não funcionais, os testes não poderão ser automatizados.
+         \item Ainda assim, estes devem ser a ínfima minoria.
+      \end{itemize}
+   \end{frame}
+
+   \subsection{Conversas}
+
+   \begin{frame}{\textit{User Stories} - Conversas}
+      \begin{itemize}
+         \item As conversas entre time de desenvolvimento, gerente de produto (ou cliente) e demais interessados serve para negociar os detalhes das \textit{user stories}.
+         \item Elas são necessárias porque os cartões em si não bastam para especificar os detalhes das \textit{stories}.
+         \item São estabelecidos também os critérios de aceitação das \textit{stories}, ou seja, as regras de como a funcionalidade deve se comportar.
+      \end{itemize}
+   \end{frame}
+
+   \subsection{Confirmação}
+
+   \begin{frame}{\textit{User Stories} - Confirmação}
+      \begin{itemize}
+         \item A confirmação compreende os critérios e testes de aceitação.
+         \item Os critérios de aceitação são similares às regras de negócio.
+         \item Um critério de aceitação deve ser expresso por um enunciado pequeno e de fácil entendimento.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Confirmação}
+      Para a \textit{story}: ``Eu, enquanto Comprador, quero utilizar meu cartão de crédito no pagamento das minhas compras.''\\
+      Tem-se os seguintes critérios de aceitação (que poderão ficar no verso do cartão):
+      \begin{enumerate}
+         \item somente podemos aceitar cartões de crédito com bandeiras com que temos convênio.
+         \item somente podemos aceitar cartões de crédito com data de expiração no futuro.
+         \item somente podemos aceitar cartões de crédito com número e nome do dono válidos.
+      \end{enumerate}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Confirmação}
+      \begin{itemize}
+         \item Cada critério de aceitação pode possuir uma série de testes de aceitação.
+         \item Um teste de aceitação serve para verificar se as saídas são corretas, ou seja, se, sob ponto de vista de negócios, a funcionalidade, de fato, realiza o que se propõe de acordo com as regras de negócio.
+         \item Obviamente, nem todos os critérios de aceitação podem ter testes de aceitação como, por exemplo, ``o botão deve ser azul''.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{User Stories} - Confirmação}
+      Para o critério de aceitação: ``somente podemos aceitar cartões de crédito com bandeiras com que temos convênio.''\footnote{Exemplo adaptado de K21.}\\
+      Tem-se os seguintes testes de aceitação:
+      \begin{itemize}
+         \item Comprador utiliza cartão de crédito Visa
+           \begin{itemize}
+              \item Aceitou = correto.
+              \item Recusou = errado, deve ser corrigido!
+           \end{itemize}
+         \item Comprador de Livros utiliza cartão de crédito Amex
+           \begin{itemize}
+              \item Aceitou = errado, deve ser corrigido!
+              \item Recusou = correto.
+           \end{itemize}
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{Definition of Done} (DoD)}
+      \begin{itemize}
+         \item Tão importante quanto definir as \textit{user stories} é definir quando elas estão de fato prontas.
+         \item Para isto, existe a \textit{Definition of Done} (DoD).
+         \item Uma \textit{user story} é considerada pronta (\textit{done}) quando atinge completamente uma série de requisitos e parâmetros.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{Definition of Done} (DoD)}
+      Derek Huerter sugere que a DoD de uma \textit{user story} seja composta por:
+      \begin{itemize}
+         \item atendimento aos critérios de aceição;
+         \item testes unitários bem sucedidos;
+         \item código revisado;
+         \item testes funcionais bem sucedidos;
+         \item atendimento à restrições (requisitos não-funcionais);
+         \item aceitação pelo gerente de produto, \textit{product owner} ou cliente.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{\textit{Definition of Done} (DoD)}
+      \begin{itemize}
+         \item A DoD não deve ser colocada nunca em segundo plano.
+         \item Pelo contrário, ela é um dos pilares de manutenção da qualidade do produto final e do processo ágil.
+         \item Quanto mais pobre uma DoD, mais risco é assumido.
+      \end{itemize}
+   \end{frame}
+
+   \subsection{Requisitos não-funcionais}
+
+   \begin{frame}{Requisitos não-funcionais}
+      \begin{itemize}
+         \item As \textit{user stories} parecem representar muito bem as funcionalidades do \textit{software}.
+         \item Entretanto, há um conjunto de requisitos que provocam restrições nos mais diversos aspectos tanto ao \textit{software} quanto ao seu desenvolvimento.
+         \item Esta classe de requisitos é chamada na literatura de \textbf{requisitos não-funcionais}.
+      \end{itemize}   
+   \end{frame}
+
+   \begin{frame}{Requisitos não-funcionais}
+      Há pelo menos três abordagens sugeridas pelas mais diversas fontes em como ligar com requisitos não-funcionais em um ambiente de desenvolvimento ágil:
+      \begin{itemize}
+         \item escrever a restrição como uma \textit{user story};
+         \item colocar a restrição como um critério de aceitação de uma \textit{user story};
+         \item colcoar a restrição como parte da \textit{Definition of Done} (DoD).
+      \end{itemize}   
+   \end{frame}
+
+   \begin{frame}{Requisitos não-funcionais como \textit{user stories}}
+      Para escrita de requisitos não-funcionais como \textit{user stories} tem-se os exemplos:
+\vspace{1cm}       
+
+      "Eu, enquanto usuário, desejo ser notificado quando minha conexão cair para que possa saber as razões e tentar solucionar o problema. (performance)"
+\vspace{1cm}
+      
+      "Eu, enquanto usuário, desejo ser informado que alguns elementos não foram mostrados devido à minha conexão lenta para que eu tenha noção do problema e possa resolvê-lo. (performance)"
+   \end{frame}
+
+   \begin{frame}{Requisitos não-funcionais como critérios de aceitação}
+      \begin{itemize}
+         \item A escrita de requisitos não-funcionais é bastante mais simples e talvez até mais direta.
+         \item Quando um requisitos não-funcional se aplicar a apenas uma \textit{user story}, é forte indicativo de que seja um bom critério de aceitação.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Requisitos não-funcionais como critérios de aceitação}
+      \begin{itemize}
+         \item \textit{Story}: Eu, enquanto cliente do banco, desejo realizar pagamentos e transferências via PIX.
+         \item Critério de aceitação: A confirmação do pagamento/transferência não deve ultrapassar 5 segundos. (performance)
+         \item Critério de aceitação: O pagamento/transferência deverá ser aceito pelo Banco Central. (segurança)
+         \item Critério de aceitação: O usuário necessitará de apenas 3 cliques + digitações para executar o/a pagamento/transferência. (usabilidade) 
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Requisitos não-funcionais como DoD}
+      \begin{itemize}
+         \item Quando há requisitos não-funcionais que abrangem diversas \textit{stories}, pode-se coloca-los como critérios da DoD destas \textit{stories}.
+         \item No documento de requisitos (\textit{product backlog}, se usado o Scrum), pode-se colocá-los à parte, porém de modo não fiquem escondidos.
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Requisitos não-funcionais como DoD}
+      São exemplos de requisitos não-funcionais a serem colocados na DoD.
+      \begin{itemize}
+         \item Deve rodar em Windows, Mac e Linux. (usabilidade)
+         \item A interface deve ser responsiva (\textit{desktop}, \textit{smart phone} e \textit{tablet}). (usabilidade)
+      \end{itemize}
+   \end{frame}
+
+   \begin{frame}{Referências}
+      \begin{itemize}
+          \item Sommerville, Ian. Software Engineering - Global Edition. 10ed. 2016. Pearson Education.
+          \item Sommerville, Ian. Engineering Software Products: An Introduction to Modern Software Engineering. 1ed. 2021. Pearson Education. 
+          \item Cohn, Mike. User Stories Applied: For Agile Software Development. 1ed. 2004. Addison Wesley.
+          \item K21 Global. Como é a user story? https://k21.global/pt/blog/como-e-a-user-story
+          \item Huerter, Derek. Definition of Done. https://www.leadingagile.com/2017/02/definition-of-done/
+          \item Core BTS. Agile User Story Splitting by Non-Functional Requirements. https://corebts.com/blog/agile-user-story-splitting-non-functional-requirements/
+          \item Saboe, Dave. Lightning Cast: Non-Functional Requirements in Agile. https://masteringbusinessanalysis.com/lightning-cast-non-functional-requirements-in-agile/
+      \end{itemize}
+    \end{frame}
+
+\end{document}
