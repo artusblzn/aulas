@@ -1,0 +1,274 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ucs}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+\usepackage{pbox}
+\usepackage{multirow}
+
+\title{Estimativas ágeis}
+\author{}
+\date{}
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \titlepage
+    \end{frame}
+
+   \section{Introdução}
+
+    \begin{frame}{Estimativas}
+        \begin{itemize}
+            \item Desde o momento que se faz o comprimisso em desenvolver um \textit{software} tem-se a pergunta: "Quando será terminado?"
+            \item Até mesmo produtos de \textit{software} desenvolvidos continuamente por diversos anos precisam de datas.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Estimativas}
+        \begin{itemize}
+            \item O simples fato de supor quando um \textit{software}, ou parte dele, será entregue já é uma estimativa.
+            \item Estimar nada mais é que uma previsão do futuro.
+            \item Na quase totalidade das vezes, a previsão não será precisa.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Estimativas}
+        \begin{itemize}
+            \item O fato de ser impreciso não torna estimar inútil ou sem ciência alguma.
+            \item Pelo contrário, todo grupo ou organização deve continuamente melhorar sua maneira de estimar, tanto utilizando experiências anteriores quanto aprimorando técnicas.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Estimativas}
+        \begin{itemize}
+            \item Apesar da literatura em Engenharia de \textit{Software} se preocupar bastante com métodos formais para estimativa, chegando até a vislumbrar o uso de Inteligência Artificial para fazê-lo, o que se tem são formas pouco estruturadas e que dependem diretamente da experiência dos envolvidos.
+            \item Nos métodos ágeis isso não é diferente.
+            \item O foco dos métodos ágeis nas conversas entre os envolvidos, no planejamento incremental e em estar sempre pronto para mudar os rumos implica muitas vezes em colocar em segundo plano certos formalismos. 
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item É importante que a equipe de desenvolvimento seja a responsável por estimar os requisitos coletivamente.
+            \item Mol\o{}kken-\O{}stvold e J\o{}rgensen (2004) mostram que grupos com quatro \textit{experts} tendem a fazer estimativas menos otimistas do que um único indivíduo.
+            \item Um trabalho anterior de J\o{}rgensen já havia mostrado que quando a estimativa é feita pelos desenvolvedores tem mais acurácia que por equipe externa.
+            \item Mais do que isso, pessoas com grande interesse na realização do projeto tendem a fornecer estimativas irreais para que os projetos sejam aprovados.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        Alsaadi e Saeedi (2022) colocam como desafios para estimar os requisitos\footnote{mais especificamente, \textit{user stories}}:
+        \begin{itemize}
+            \item inexperiência dos membros da equipe;
+            \item pressão externa;
+            \item influência da sequência de estimativa das \textit{stories}.
+        \end{itemize}
+        Na literatura há trabalhos (Grimstad e J\o{}rgensen, 2009; J\o{}rgensen e Halkjelsvik, 2020) que indicam que após estimar \textit{stories} pequenas, a equipe tende a subestimar as demais \textit{stories} e após estimar \textit{stories} grandes, a superestimar as demais. 
+    \end{frame}
+
+    \section{\textit{Story points}}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item As \textit{user stories} são (ou deveriam ser) um monopólio para a análise de requisitos dentro dos métodos ágeis.
+            \item Porém, tanto a natureza das \textit{user stories} quanto dos próprios métodos ágeis (iterativos incrementais) criam dificuldades para estimativas e planejamentos a longo prazo.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item O fato dos cartões serem simples lembretes e não definirem exatamente os requisitos, podem tornar, em um primeiro momento, nebulosas as formas de estimativa.
+            \item O contexto, porém, faz toda diferença.
+            \item Ao mesmo passo que perde-se uma dada "segurança" em estimar em relação ao que é feito nos métodos orientados a planos, ganha-se em reatividade a mudanças.
+            \item De nada adianta ter a melhor das estimativas se as mudanças são inevitáveis.
+            \item Pelo contrário, planejar e estimar consome muitos recursos.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item De nada adianta ter a melhor das estimativas se as mudanças são inevitáveis.
+            \item Pelo contrário, planejar e estimar consome muitos recursos.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item O fato de tornar mais "nebulosas" as estimativas não quer dizer que os métodos ágeis ou as \textit{user stories} tornem as estimativas mais imprecisas.
+            \item O que ocorrer é que o método de estimar deve mudar.
+            \item Seria contraditório utilizar um paradigma para levantar, analisar e implementar os requisitos ao mesmo tempo que se usa uma forma de estimar mais arcaica. 
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item Os métodos ágeis e as \textit{user stories} trazem a estimativa por \textit{story points}.
+            \item \textit{Story points} são uma medida relativa.
+            \item Na literatura, é possível ver os \textit{story points} representando tamanho (complexidade) ou esforço.
+            \item Independente do que significarem os \textit{story points} para uma equipe, eles devem ser claros e estáveis.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        Tem-se exemplo de duas \textit{user stories} e suas estimativas em \textit{story points} para um sistema de \textit{marketplace}:
+        \begin{itemize}
+            \item Eu, enquanto Cliente, desejo pagar minhas compras com cartão de crédito. \textbf{SP: 3} 
+            \item Eu, enquanto Logista, desejo cadastrar produtos para poder vendê-los. \textbf{SP: 2}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item O ponto central aqui é que deve haver uma triangulação entre as \textit{user stories}.
+            \item As \textit{user stories} com mais pontos atribuídos devem ser as mais complexas (ou requiram mais esforço).
+            \item A equipe deve garantir que seja mantida a devida proporção entre as \textit{user stories}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item O ponto central aqui é que deve haver uma triangulação entre as \textit{user stories}, buscando que as \textit{user stories} com mais pontos atribuídos sejam mais complexas (ou requiram mais esforço).
+            \item As faixas de pontuações variam de equipe para equipe, sendo a sequência de Fibonacci bastante utilizada.
+            \item Deve-se tomar cuidado com valores muito altos porque podem significar \textit{stories} muito grandes e que deverão ser divididas.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item Entre complexidade e esforço há uma dicotomia que deve ser bem discutida entre a equipe.
+            \item A complexidade refere-se ao quão difícil é implementar um dado requisito.
+            \item Já esforço é o quanto de trabalho será exigido da equipe para implementar esse mesmo requisito.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item Os defensores da estimativa por complexidade usarão o argumento que o esforço para implementar algo dependerá da experiência da equipe.
+            \item Isso faz sentido se observado que nos métodos ágeis o código é coletivo e que todos os desenvolvedores são iguais perante ao método.
+            \item Além disso, os métodos ágeis incentivam desenvolvedores "polivalentes".
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item O incentivo à "polivalência" é um ponto positivo dos métodos ágeis.
+            \item Se os membros da equipe de desenvolvimentos são mais "completos" em seus conhecimentos, diminui-se o impacto do \textit{turnover}\footnote{\textit{Turnover é quando a empresa/equipe perde um funcionário/membro.}}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        Esta "polivalência" tem como pontos fortes:
+        \begin{itemize}
+            \item menor dependência de membros individuais da equipe;
+            \item mais capacidade de criar soluções;
+            \item maior tendência à equipe aprender novas tecnologias e atualizar-se constantemente.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item Estimar baseado em complexidade pode aumentar o erro na estimativa.
+            \item Mike Cohn dá como exemplo, no seu artigo "\textit{Story Points Estimate Effort Not Just Complexity}", um projeto onde a equipe é formada por um cirurgião neurologista e uma criança.
+            \item O projeto possui dois requisitos, onde um é uma cirurgia neurológica relativamente simples\footnote{Se é que isso é possível.} e colar X selos de carta.
+            \item O primeiro é muito mais complexo que o segundo.
+            \item Se a criança ficar responsável pela cirurgia a medida por complexidade poderá até estar de acordo com a realidade.
+            \item Porém, se o número de selos for grande demais, mesmo que o cirurgião realize a cirurgia e a criança cole os selos, o tempo poderá ser o mesmo, criando um erro de estimativa.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        Entretanto, Mike Cohn esquece é que estimar por esforço possui alguns problemas:
+        \begin{itemize}
+            \item se a \textit{user story} é tão gigantesca e repetitiva como colar X selos, talvez ela deva ser quebrada em várias partes ou até mesmo reescrita;
+            \item acopla cada \textit{story point} a uma quantidade de tempo;
+            \item acopla cada \textit{user story} a um pequeno grupo de desenvolvedores dentro da equipe\footnote{Quando não a um único indivíduo.}.
+            \item se à "pessoa certa" é dada a atividade, então não há sentido em estimar coletivamente os requisitos, pois se um é a "pessoa certa", então ele também tem a \textit{expertise} para estimar o requisito.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{\textit{Story points}}
+        \begin{itemize}
+            \item Mike Cohn, porém, está correto em dizer que a complexidade não é o bastante para estimar um requisito.
+            \item Fatores como risco e incerteza também devem ser levados em conta.
+        \end{itemize}
+    \end{frame}
+
+    \section{Planning Poker\texttrademark}
+
+    \begin{frame}{Planning Poker\texttrademark}
+        \begin{itemize}
+            \item O Planning Poker\texttrademark é uma técnica utilizada pelas equipes ágeis para a estimativa das \textit{user stories}.
+            \item Ela é derivada da técnica Wideband Delphi.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Planning Poker\texttrademark}
+        \begin{itemize}
+            \item No Planning Poker\texttrademark, cada desenvolvedor recebe um baralho de cartas.
+            \item Cada carta possui um valor representando uma quantidade de \textit{story points}.
+            \item Uma \textit{user story} é lida em voz alta e os desenvolvedores podem fazer perguntas para esclarecer detalhes.
+            \item Sanadas as dúvidas, todos os desenvolvedores escolhem, cada um, uma carta e a mostram a todos simultaneamente.
+            \item Caso não haja consenso imediato (todos colocarem o mesmo valor), os desenvolvedores que usaram a maior e a menor carta argumentam o porquê o fizeram.
+            \item O processo repete-se até que haja consenso. 
+        \end{itemize}
+    \end{frame}
+
+    \section{Velocidade}
+
+    \begin{frame}{Velocidade}
+        \begin{itemize}
+            \item Ao se usar \textit{story points} para estimar os requisitos, muda-se também a maneira como se vê a eficiência da equipe de desenvolvimento.
+            \item Como as iterações possuem tempo fixo, a quantidade de \textit{story points} realizadas pela equipe em uma iteração é chamada \textbf{velocidade}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Velocidade}
+        \begin{itemize}
+            \item Se uma equipe completa uma quantidade de \textit{user stories} que tenha suas complexidades somadas igual a 30 \textit{story points}, então a velocidade do time é igual a 30.
+            \item Para a próxima iteração espera-se a equipe consiga repetir a mesma velocidade.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Velocidade}
+        São fatores que podem afetar a velocidade da equipe:
+        \begin{itemize}
+            \item \textit{expertise} do domínio pela equipe;
+            \item domínio das tecnologias pela equipe;
+            \item coesão da equipe;
+            \item reuniões;
+            \item feriados;
+            \item etc.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Velocidade}
+        A velocidade leva em conta também que:
+        \begin{itemize}
+            \item não foram feitas horas extras;
+            \item as estimativas das \textit{user stories} foram coerentes;
+            \item as \textit{user stories} realizadas foram bem escritas e independentes.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Referências}
+        \begin{itemize}
+            \item Cohn, Mike. User Stories Applied: For Agile Software Development. 1ed. 2004. Addison Wesley.
+            \item Cohn, Mike. Four Reasons Agile Teams Estimate Product Backlog Items. 2022. https://www.mountaingoatsoftware.com/blog/four-reasons-agile-teams-estimate-product-backlog-items
+            \item Cohn, Mike. Story Points Estimate Effort Not Just Complexity. 2010. https://www.mountaingoatsoftware.com/blog/its-effort-not-complexity
+            \item Cohn, Mike. Agile Estimating and Planning. 1ed. 2006. Prentice Hall.
+            \item Alsaadi, Bashaer; Saeedi, Kawther. Data-driven Effort Estimation Techniques of Agile User Stories: a systematic literature review. 2022. Artificial Intelligence Review.
+            \item Mol\o{}kken-\O{}stvold, Kjetil; J\o{}rgensen, Magne. Group Processes in Software Effort Estimation. 2004. Empirical Software Engineering.  
+            \item Sutherland, Jeff. Story Points: Why are they better than hours? 2013. https://www.scruminc.com/story-points-why-are-they-better-than/
+        \end{itemize}
+    \end{frame}
+
+\end{document}
