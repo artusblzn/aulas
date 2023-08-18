@@ -1,0 +1,180 @@
+\documentclass[11pt,justified]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+\title{Introdução ao Projeto Orientado a Objetos}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+\section{Princípios do Projeto Orientado a Objetos}
+
+\begin{frame}{Programação Orientada a Objetos}
+    \begin{itemize}
+        \item A Programação Orientada a Objetos (POO) é o paradigma dominante hoje em muitas áreas do desenvolvimento de \textit{software}.
+        \item A popularidade da POO se dá por sua capacidade de permitir aos desenvolvedores de \textit{software} gerenciar a complexidade do projeto de \textit{software}.
+        \item Usa-se "gerenciar" ao invés de "diminuir" ou "mitigar" porque entendemos que a complexidade é algo inevitável, porém cabe ao desenvolvedor ter (ou tentar ter) o controle de como a complexidade atuará no projeto de \textit{software}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípios do Projeto Orientado a Objetos}
+    Morelli e Walde\footnote{Java, Java, Java: Object-Oriented Problem Solving. 3 ed.} colocam como princípios do Projeto Orientado a Objetos:
+    \begin{itemize}
+        \item dividir e conquistar;
+        \item encapsulamento;
+        \item \textit{interface};
+        \item ocultação de informação;
+        \item generalidade;
+        \item extensibilidade;
+        \item abstração.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio de dividir e conquistar}
+    \begin{itemize}
+        \item Os problemas a serem solucionados com uso de \textit{software} tendem não apenas a serem complexos, mas a serem grandes.
+        \item Segundo Morelli e Walde, o primeiro passo para projetar \textit{software} é dividir o problema em objetos que interagirão entre si para resolver o problema.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio do encapsulamento}
+    \begin{itemize}
+        \item Os objetos são representações de coisas materiais e ideais.
+        \item Como representações, eles não precisam ter todas os atributos que possuem no mundo real, porém precisam dos atributos que serão necessários para realizar seu papel dentro do sistema.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio da \textit{interface}}
+    \begin{itemize}
+        \item Tendo os objetos e seus atributos definidos, deve-se definir como estes objetos deverão interagir com os demais objetos.
+        \item Isto significa definir a \textit{interface} do objeto, ou seja, que dados o objeto fornecerá aos demais e quais ele requerirá para realizar o cálculo.
+        \item Por exemplo, um método retorna (ou não) um valor, mas para isso ele pode demandar certos dados (parâmetros).
+        \item Do ponto de vista prático, este princípio define métodos e atributos públicos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio da ocultação de informação}
+    \begin{itemize}
+        \item O princípio da ocultação de informação está presente como elemento sintático em diversas linguagens de programação orientadas a objetos.
+        \item Em outras, ele é apenas um princípio semântico.
+        \item O conceito por trás desse princípio diz que nem todos os atributos e métodos devem estar expostos a todos os objetos.
+        \item Morelli e Walde dão o exemplo que não ter acesso ao mecanismo de um relógio protege seu funcionamento, ao mesmo passo que não limita sua utilidade.
+        \item Em termos de programação, este princípio define métodos e atributos privados.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio da generalidade}
+    \begin{itemize}
+        \item O princípio da generalidade é um tanto polêmico no contexto de projeto de \textit{software}.
+        \item Ele trata do uso de bibliotecas e da construção de classes genéricas.
+        \item O uso de bibliotecas de terceiros, pode tanto agregar velocidade e segurança ao desenvolvimento de \textit{software} quanto causar o seu oposto.
+        \item Ao usar uma biblioteca de terceiro, o desenvolvedor está confiando na mesma.
+        \item Sobre a construção de classes genéricas, é importante ter cuidado, pois colocar o reúso em primeiro lugar pode tornar o projeto de \textit{sotware} desnecessariamente mais complexo.
+        \item Por outro lado, criar classes genéricas para realizar tarefas que se repetirão no \textit{software} pode simplificar o projeto de \textit{software}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio da extensibilidade}
+    \begin{itemize}
+        \item O princípio da extensibilidade está bastante ligado aos conceitos de herança.
+        \item A herança é um conceito que permite modificar as capacidades de um objeto, porém mantendo a \textit{interface} definida pela classe pai\footnote{Tradução do termo "parent class".}.
+        \item Tenha-se, por exemplo, um sistema de monitoramento. Um dos módulos deste sistema ficará responsável pelos cálculos e outro pela leitura dos sensores. Caso o protocolo de um ou mais sensores mude, pode-se extender a classe (ou \textit{interface}\footnote{Classe do tipo "interface", conceito presente no Java.}) responsável pela leitura para que funcione com este novo protocolo.
+        \item Vamos lembrar que a herança não é a solução de todos os problemas e seu uso deve se dar em casos específicos.
+        \item O uso descontrolado de herança pode gerar alto nível de acoplamento no sistema.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Princípio da abstração}
+    \begin{itemize}
+        \item O princípio da abstração é o que rege o projeto de \textit{software} como um todo.
+        \item Todas os objetos em um \textit{software} nada mais são que abstrações de coisas e conceitos do mundo real.
+        \item Por isso, os objetos não conterão todas as informações e papéis destes objetos, mas apenas os necessários para o \textit{software} que será desenvolvido.
+    \end{itemize}
+\end{frame}
+
+\section{Projeto Orientado a Objetos}
+
+\begin{frame}{Projeto Orientado a Objetos}
+    \begin{itemize}
+        \item O projeto de \textit{software} aqui abordado será o Projeto Orientado a Objetos.
+        \item Se utilizado um método orientado a planos, provavelmente este projeto será bastante completo e será realizado ao fim das etapas referentes à Engenharia de Requisitos.
+        \item Nos métodos ágeis, geralmente iterativos e incrementais, o projeto será completado a cada iteração, sendo alterado de acordo com os requisitos a serem implementados.
+        \item Seja qual for a abordagem utilizada, é bastante interessante avaliar a possibilidade da construção de protótipos de baixa fidelidade para tornar mais claro como o \textit{software} deve se comportar.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Projeto Orientado a Objetos}
+    Pode-se sistematizar a criação do Projeto Orientado a Objetos a partir das seguintes etapas:\footnote{Baseado no apresentado por Morelli e Walde.}
+    \begin{itemize}
+        \item decomposição do problema;
+        \item projeto de objetos (classes);
+        \item definição de atributos, métodos e algoritmos;
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Decomposição do problema}
+    \begin{itemize}
+        \item A decomposição do problema é a divisão do problema em problemas menores.
+        \item A partir da análise do problema\footnote{Pode-se utilizar um documento de requisitos.}, são observados substantivos (coisas e ideias) que fazem parte do problema e possivelmente da solução.
+        \item Estes substantivos são candidatos a se tornarem classes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Projeto de objetos (classes)}
+    Tendo as classes definidas, para cada uma deve-se realizar as seguintes perguntas:
+    \begin{itemize}
+        \item qual o papel da classe?
+        \item quais dados ela precisará?
+        \item quais as ações ela realizará?
+        \item qual sua \textit{interface}?
+        \item quais informações serão ocultas?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Definição de atributos, métodos e algoritmos}
+    \begin{itemize}
+        \item O próximo passo é definir os atributos.
+        \item Para cada atributo da classe é necessário decidir qual será o tipo de dado para representá-lo.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Definição de atributos, métodos e algoritmos}
+    Definidos os atributos, para cada método realiza-se as seguintes perguntas:
+    \begin{itemize}
+        \item qual tarefa específica o método realizará? (escopo)
+        \item quais informações serão necessárias? (parâmetros)
+        \item qual algoritmo utilizará?
+        \item qual resultado produzirá? (retorno ou efeito colateral)
+    \end{itemize}
+\end{frame}
+
+\section{Conclusão}
+
+\begin{frame}{Conclusão}
+    \begin{itemize}
+        \item Os conceitos e sistematização aqui apresentados são apenas uma amostra do que é possível fazer em termos projeto de \textit{software}.
+        \item Apesar disto, se aplicados corretamente possibilitam o desenvolvimento ágil de aplicações.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Referências}
+    \begin{itemize}
+        \item Sommerville, Ian. Software Engineering - Global Edition. 10ed. 2016. Pearson Education.
+        \item Sommerville, Ian. Engineering Software Products: An Introduction to Modern Software Engineering. 1ed. 2021. Pearson Education.
+    \end{itemize}
+\end{frame}
+
+\end{document}
