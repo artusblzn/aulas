@@ -1,0 +1,867 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+
+\lstset{basicstyle=\scriptsize,language=Java, showstringspaces=false}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\title{Introdução ao Código Limpo}
+\author{}
+\date{}
+
+\begin{document}
+
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}
+
+	\section{Introdução}
+
+  \begin{frame}{Código Limpo}
+    \begin{itemize}
+      \item Os programas de computador são modelos matemáticos realizados a partir de necessidades humanas.
+      \item As necessidades humanas, porém, são descritas de maneira complexa e abstrata através da linguagem humana.
+      \item Já os modelos matemáticos são formais e, portanto, não podem ser gerados através de sentimentos (\textit{feelings}) vagos.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Código Limpo}
+    \begin{itemize}
+      \item A materialização dos modelos matemáticos em programa de computador é o código.
+      \item Por isso, o código é indispensável.
+      \item O código é o que torna concreto o requisito abstrato.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Código Limpo}
+    \begin{itemize}
+      \item A qualidade do código importa.
+      \item Código de má qualidade, também chamado ``código ruim'', impacta negativamente na produtividade das equipes.
+      \item A maior parte do ciclo de vida do \textit{software} é a sua manutenção.
+      \item Além disso, o código não é de um desenvolvedor, mas de uma equipe.
+      \item Isto significa que espera-se que a maior parte da vida de um \textit{software} será preenchido por pessoas que não escreveram um pedaço específico de código o lendo. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Código Limpo}
+    \begin{itemize}
+      \item É comum a justificativa da pressão dos prazos para a criação ``código ruim''.
+      \item Entretanto, o ``código ruim'' lentifica ainda mais o desenvolvimento e incentiva o descumprimento dso prazos.  
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Código Limpo}
+    \begin{itemize}
+      \item Escrever ``código bom'', porém, não é algo simples ou natural.
+      \item É uma disciplina que envolve a prática de diversas técnicas.
+      \item A palavra prática, neste caso, é muito importante porque não basta saber diferenciar o ``código bom'' do ``código ruim'', é preciso praticar a escrita de código bom.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Código Limpo}
+    Um código limpo tem, segundo alguns grandes nomes da indústria, as seguintes características: 
+    \begin{itemize}
+      \item alta legibilidade;
+      \item facilidade para ser alterado;
+      \item mínimo de dependências;
+      \item possui testes unitários e de aceitação;
+      \item sem duplicações;
+    \end{itemize}
+    As características não se limitam a esta lista, mas estas são as mais importantes.
+  \end{frame}
+
+  \section{Nomes}
+    
+  \begin{frame}{Nomes}
+    \begin{itemize}
+      \item Na programação, todos as entidades (classes, métodos (ou funções), atributos (ou variáveis), módulos (ou pacotes)) acabam recebendo nomes únicos.
+      \item A correta nomeação destes é fator importante para a escrita de código limpo.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Nomes devem revelar intenção}
+    \begin{itemize}
+      \item Os nomes das entidades devem deixar claro a todos a função destas.
+      \item Um bom nome é um nome que diz: o que é; o que faz; e como é usado.
+    \end{itemize}
+  \end{frame}
+
+\begin{frame}[fragile]{Nomes devem revelar intenção}
+  Tenham-se o código abaixo:\footnote{Exemplo retirado de Martin, 2009.}
+  
+  \begin{lstlisting}
+  int d; \\ elapsed time in days
+  \end{lstlisting}
+
+  Ele poderia ser reescrito para:
+  
+  \begin{lstlisting}
+  int elapsedTimeInDays;
+  int daysSinceCreation;
+  int daysSinceModification;
+  \end{lstlisting}
+  
+  Observe que as três variáveis do código embaixo informam muito mais do que o código em cima.
+\end{frame}
+
+  \begin{frame}[fragile]{Nomes devem revelar intenção}
+    \begin{itemize}
+      \item O código abaixo faz parte de um jogo de campo minado.
+      \item O que ele faz?\footnote{Exemplo retirado de Martin, 2009.} 
+    \end{itemize}
+    
+    \begin{lstlisting}
+    public List<int[]> getThem() {
+      List<int[]> list1 = new ArrayList<int[]>();
+      for (int[] x : theList) {
+        if (x[0] == 4) {
+          list1.add(x);
+        }
+      }
+      return list1;
+    }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Nomes devem revelar intenção}
+    \begin{itemize}
+      \item Apesar de ser bastante simples, o código anterior é bastante difícil de ler.
+      \item A começar pelo nome do método, que não explica quem é \textit{them}.
+      \item O que é \verb|theList|?
+      \item Por que fazer um teste do valor \verb|4| contra o índice \verb|0| do item de \verb|theList|?
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Nomes devem revelar intenção}
+
+    Tendo o código antigo e o refatorado lado a lado, fica clara a diferença.
+  
+    \begin{columns}
+      \begin{column}{0.48\textwidth}
+        \begin{lstlisting}[basicstyle=\tiny]
+public List<int[]> getThem() {
+ List<int[]> list1 = new ArrayList<int[]>();
+ for (int[] x : theList) {
+  if (x[0] == 4) {
+   list1.add(x);
+  }
+ }
+ return list1;
+}
+        \end{lstlisting}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{lstlisting}[basicstyle=\tiny]
+public List<int[]> getFlaggedCells() {
+ List<int[]> flaggedCells = 
+    new ArrayList<int[]>();
+ for (int[] cell : gameBoard) {
+  if (cell[STATUS_VALUE] == FLAGGED) {
+   flaggedCells.add(cell);
+  }
+ }
+ return flaggedCells;
+}
+        \end{lstlisting}
+      \end{column}
+    \end{columns}
+
+    Agora é possível perceber que o método retorna as células que foram marcadas com bandeira.
+  \end{frame}
+  
+  \begin{frame}[fragile]{Nomes devem revelar intenção}
+
+    E o código pode ser refatorado ainda mais uma vez.
+    
+    \begin{columns}
+      \begin{column}{0.48\textwidth}
+        \begin{lstlisting}[basicstyle=\tiny]
+public List<int[]> getFlaggedCells() {
+ List<int[]> flaggedCells = 
+    new ArrayList<int[]>();
+ for (int[] cell : gameBoard) {
+  if (cell[STATUS_VALUE] == FLAGGED) {
+   flaggedCells.add(cell);
+  }
+ }
+ return flaggedCells;
+}
+        \end{lstlisting}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{lstlisting}[basicstyle=\tiny]
+public List<Cell> getFlaggedCells() {
+  List<Cell> flaggedCells = 
+    new ArrayList<Cell>();
+  for (Cell cell : gameBoard) {
+    if (cell.isFlagged()) {
+      flaggedCells.add(cell);
+    }
+  }
+  return flaggedCells;
+}
+        \end{lstlisting}
+      \end{column}
+    \end{columns}
+
+    \begin{itemize}
+      \item Ao invés de usar uma vetor de inteiros, pode-se agrupar os dados da célula em um objeto célula.
+      \item O método \verb|isFlagged| torna a leitura do código ainda mais fluida.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Evitar a desinformação}
+    \begin{itemize}
+      \item Poucas coisas podem ser piores que um nome que induz ao erro.
+      \item Colocar o sufixo \textit{List} em uma variável que não é uma lista pode causar muitos problemas.
+      \item Deve-se evitar também nomes de métodos e/ou variáveis que são quase idênticos e podem levar o programador a se confundir.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Não usar palavras sem significado}
+    \begin{itemize}
+      \item Variáveis, parâmetros e atributos como \verb|aux| e \verb|a1| simplesmente informam nada.
+      \item Soma-se a isso os sufixos \textit{Data} e \textit{Info} que, na maioria das vezes, agregam valor nenhum.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Não usar palavras sem significado}
+    \begin{itemize}
+      \item Um ponto um tanto controverso é sobre usar sufixos que expressem o tipo da variável ou atributo.
+      \item Em alguns casos, especialmente em linguagens de tipagem dinâmica, esses sufixos podem até ser úteis.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Usar nomes pronunciáveis}
+    \begin{itemize}
+      \item Nomes imponunciáveis são péssimas escolhas.
+      \item Tenha-se o exemplo abaixo e sua refatoração:\footnote{Exemplo adaptado de Martin, 2009.}
+    \end{itemize}
+
+    \begin{lstlisting}
+      class DtaRcrd102 {
+        private Date genymdhms;
+        private Date modymdhms;
+        private final String pszqint = "102";
+        };
+    \end{lstlisting}
+  
+    Ele poderia ser reescrito para:
+   
+    \begin{lstlisting}
+      class Customer {
+        private Date generationTimestamp;
+        private Date modificationTimestamp;;
+        private final String recordId = "102";
+        /* ... */
+        };
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}{Verbos e substantivos}
+    \begin{itemize}
+      \item Métodos e funções devem ser nomeados com verbos, pois significam ações.
+      \item Os atributos e variáveis devem ser nomeados com substantivos, já que significam coisas ou conceitos.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Uma palavra para cada conceito}
+    \begin{itemize}
+      \item Cada conceito deve ser representado por uma única palavra.
+      \item Se adicionar um item a uma estrutura de dados é através do método \verb|add|, não faz sentido utilizar em outras partes do código palavras como \textbf{insert} ou \textbf{append}.
+      \item Claro que, se há diferença semântica entre dois métodos que adicionam um item, pode-se utilizar duas palavras diferentes.
+      \item Por exemplo, tenha-se dois métodos \verb|insert| e \verb|append|. O primeiro pode significar uma função que adiciona um item à estrutura de dados e o segundo indica que a adição é feita ao final da estrutura de dados.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Uma palavra para cada conceito}
+    \begin{itemize}
+      \item Esta regra também se aplica a nome de classes e atributos.
+      \item Os sufixos \textit{Manager} e \textit{Controller} geralmente significam a mesma coisa.
+      \item Intercambiar estes termos no código pode gerar mais dificuldade de entendê-lo.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Contexto}
+    \begin{itemize}
+      \item Em alguns casos, pode ser interessante inserir contexto, especialmente aos nomes de variáveis e atributos. 
+      \item O atributo \verb|state| pode significar tanto uma unidade da federação quanto a situação corrente de alguma coisa.
+      \item Porém, \verb|addrState| deixa claro que é uma unidade da federação vinculada a um endereço.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Contexto}
+    \begin{itemize}
+      \item Por outro lado, adicionar contexto, em alguns casos, pode ser ruim.
+      \item \verb|accountAddress| ou \verb|costumerAddress| podem ser bons nomes para instâncias, mas péssimos para nomes de classes.
+      \item \verb|Address| parece um nome bastante melhor.
+    \end{itemize}
+  \end{frame}
+
+  \section{Funções}
+
+  \begin{frame}{Funções}
+    \begin{itemize}
+      \item A função é uma das entidades fundamentais de um programa de computador.
+      \item Ela age como um subprograma que, a partir de um conjunto finito de entrada, calcula um conjunto finito de saída.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções}
+    Tenha seguinte código de uma ferramenta de testes (FitNesse) apresentado em Clean Code:
+
+    \begin{lstlisting}[basicstyle=\tiny]
+  public static String testableHtml(PageData pageData, boolean includeSuiteSetup
+                                    ) throws Exception {
+    WikiPage wikiPage = pageData.getWikiPage();
+    StringBuffer buffer = new StringBuffer();
+    if (pageData.hasAttribute("Test")) {
+      if (includeSuiteSetup) {
+        WikiPage suiteSetup = PageCrawlerImpl.getInheritedPage(
+                      SuiteResponder.SUITE_SETUP_NAME, wikiPage);
+        if (suiteSetup != null) {
+          WikiPagePath pagePath = suiteSetup.getPageCrawler().getFullPath(suiteSetup);
+          String pagePathName = PathParser.render(pagePath);
+          buffer.append("!include -setup .").append(pagePathName).append("\n");
+        }
+      }
+      WikiPage setup = PageCrawlerImpl.getInheritedPage("SetUp", wikiPage);
+      if (setup != null) {
+        WikiPagePath setupPath = wikiPage.getPageCrawler().getFullPath(setup);
+        String setupPathName = PathParser.render(setupPath);
+        buffer.append("!include -setup .").append(setupPathName).append("\n");
+      }
+    }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções}
+    Continua:
+
+    \begin{lstlisting}[basicstyle=\tiny]
+    buffer.append(pageData.getContent());
+    if (pageData.hasAttribute("Test")) {
+      WikiPage teardown = PageCrawlerImpl.getInheritedPage("TearDown", wikiPage);
+      if (teardown != null) {
+        WikiPagePath tearDownPath = wikiPage.getPageCrawler().getFullPath(teardown);
+        String tearDownPathName = PathParser.render(tearDownPath);
+        buffer.append("\n").append("!include -teardown .")
+                          .append(tearDownPathName).append("\n");
+      }
+      if (includeSuiteSetup) {
+        WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(
+                        SuiteResponder.SUITE_TEARDOWN_NAME, wikiPage);
+        if (suiteTeardown != null) {
+          WikiPagePath pagePath = suiteTeardown.getPageCrawler().getFullPath(suiteTeardown);
+          String pagePathName = PathParser.render(pagePath);
+          buffer.append("!include -teardown .").append(pagePathName).append("\n");
+        }
+      }
+    }
+    pageData.setContent(buffer.toString());
+    return pageData.getHtml();
+  }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções}
+    \begin{itemize}
+      \item É esperado que alguém que não conhece o contexto da ferramenta FitNesse tenha dificuldades em sequer conceber a ideia por trás da função mostrada.
+      \item Entretanto, esse não é o maior dos problemas.
+      \item A função \verb|testableHtml| nesta forma apresenta inúmeros problemas de codificação. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções}
+    \begin{itemize}
+      \item O primeiro problema é o nome da função e de algumas variáveis.
+      \item \verb|testableHtml| é um substantivo e não um verbo. Fica difícil dizer o que a função fará.
+      \item Lendo com calma a função, percebe-se que ela tem como objetivo renderizar uma página de teste incluindo os \textit{setups} e \textit{teardowns}\footnote{Em ferramentas de testes automatizados, é possível realizar ações antes (\textit{setup} e após (\textit{teardown}) a execução do teste.}
+      \item Então, \verb|renderPageWithSetupsAndTeardowns| seria um nome melhor.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções}
+    \begin{itemize}
+      \item A variável \verb|buffer| é um exemplo de variável mal nomeada.
+      \item Ela não é um simples \textit{buffer}, mas o conteúdo da página adicionados \textit{setups} e \textit{teardowns};
+      \item Martin sugere renomeá-la para \verb|newPageContent|.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções devem ser pequenas}
+    \begin{itemize}
+      \item Outro problema da função de exemplo é que ela é muito grande e com fluxo tão complexo a ponto de tornar difícil entender seu funcionamento.
+      \item Uma função deveria ter pouquíssimas linhas.
+      \item Robert Martin sugere até que os conteúdos dentro de estruturas de decisão e laços de repetição deveriam ser de apenas uma linha, possivelmente sendo uma chamada de função.
+      \item Mais do que isso, os próprios condicionais destas estruturas podem ser funções.  
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções devem fazer apenas uma coisa}
+    \begin{itemize}
+      \item O terceiro problema da função de exemplo está ligado também ao seu tamanho, mesmo que de maneira menos direta.
+      \item \verb|testableHtml| faz três ações por si mesmo.
+      \item Ela verifica se é uma \textit{suite} de testes, adiciona \textit{setups} e \textit{teardowns} e renderiza a página.
+      \item O ideal é que as três primeiras atividades fossem funções e que a função renomeada para \verb|renderPageWithSetupsAndTeardowns| só as chamasse.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções devem fazer apenas uma coisa}
+    \begin{itemize}
+      \item Entretanto, se uma função chama várias funções que realizam outras atividades, ela estaria ainda assim fazendo estas atividades?
+      \item A resposta rápida é que não.
+      \item A questão aqui são os níveis de abstração.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Funções devem fazer apenas uma coisa}
+    \begin{itemize}
+      \item Robert Martin sugere que se escreva as funções como parágrafos \textit{PARA}.
+      \item Assim, tem-se a função \verb|renderPageWithSetupsAndTeardowns|:
+    \end{itemize}
+    \begin{enumerate}
+      \item PARA renderizar a página incluindo \textit{setups} e \textit{teardowns}, nós incluímos os \textit{setups}, então o conteúdo de teste da página, e, por fim, os \textit{teardowns}.
+      \begin{enumerate}[I]
+        \item PARA incluir \textit{setups}, nós incluímos \textit{setup} da \textit{suite} de testes se for uma \textit{suite}, então incluímos o \textit{setup} normal.
+        \begin{enumerate}[i] 
+          \item PARA incluir \textit{setup} da \textit{suite} de testes\dots 
+        \end{enumerate}
+      \end{enumerate}
+    \end{enumerate}
+    \begin{itemize}
+      \item Cada parágrafo corresponde a um nível de abstração.
+      \item Uma função deve-se restringir a um único nível de abstração.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Argumentos das funções}
+    \begin{itemize}
+      \item Funções com poucos (ou nenhum) argumento são mais fáceis de ler.
+      \item Entretanto, nem sempre será possível criar funções/métodos sem argumentos.
+      \item Apesar disso, há técnicas para tentar reduzir a quantidade de argumentos ao mínimo.
+    \end{itemize}
+  \end{frame}
+ 
+  \begin{frame}[fragile]{Argumentos das funções}
+    As funções com um argumento assumem geralmente três formas:
+    
+    \begin{enumerate}
+      \item \verb|boolean fileExists(String filename)|
+      \item \verb|InputStream fileOpen(String filename)|
+      \item \verb|void recordNumberOfFailedAttemps(int nAttemps)|
+    \end{enumerate}
+
+    \begin{itemize}
+      \item Nas duas primeiras formas, a função recebe um argumento, realiza um cálculo, e devolve um valor lógico.
+      \item Na terceira forma, a função é um evento que transforma o estado do sistema.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Argumentos das funções}
+    \begin{itemize}
+      \item Há, porém, uma quarta forma que é bastante problemática.
+      \item A função \verb|void includeSetupPageInto(StringBuffer pageText)| usa como saída o próprio argumento de entrada.
+      \item Note que exige que o leitor pare para pensar até chegar a esta conclusão.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Argumentos das funções}
+    \begin{itemize}
+      \item Para reduzir a quantidade de argumentos de uma função, uma técnica simples é tentar livrar-se dos argumentos \textit{flag}.
+      \item \textit{Flags} são passadas para funções para alterar o fluxo dessas.
+      \item Faz mais sentido fazer mais de uma função para lidar com esse problema.
+      \item Por exemplo, \verb|render(boolean isSuite)| pode se transformar em \verb|renderForSuite()| e \verb|renderForSingleTest()|
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Argumentos das funções}
+    \begin{itemize}
+      \item Um ponto importante sobre argumentos é que, no caso de funções com mais de um argumento, deve-se observar a coesão e a ordem natural entre estes.
+      \item Uma função que cria um ponto cartesiano ter dois argumentos (\verb|x| e \verb|y|) faz completo sentido.
+      \item Até mesmo a ordem dos dois é a convencionada.
+      \item Estivessem inversamente colocados, o código ficaria muito mais difícil de ler.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Argumentos das funções}
+    \begin{itemize}
+      \item Outra técnica para reduzir a quantidade de argumentos é agrupar dois ou mais argumentos em um objeto.
+      \item Tenha-se uma função que cria um círculo.
+      \item Ela deve exigir as coordenadas do ponto central do círculo e o raio (ou diâmetro).
+      \item As coordenadas do ponto central podem ser agrupadas em um argumento só através de um objeto que represente um ponto.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Não realizar efeitos colaterais}
+    \begin{itemize}
+      \item As funções não devem realizar efeitos colaterais.
+      \item Eles acabam gerando resultados não previstos para o programador e podem criar \textit{bugs} desnecessários.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Não realizar efeitos colaterais}
+    Tenha-se a função abaixo\footnote{Retirado de Martin, 2009.}:
+    
+    \begin{lstlisting}
+      public boolean checkPassword(String userName, String password) {
+        User user = UserGateway.findByName(userName);
+        if (user != User.NULL) {
+          String codedPhrase = user.getPhraseEncodedByPassword();
+          String phrase = cryptographer.decrypt(codedPhrase, password);
+          if ("Valid Password".equals(phrase)) {
+            Session.initialize();
+            return true;
+          }
+        }
+        return false;
+      }
+    \end{lstlisting}
+    \begin{itemize}
+      \item A função promete verificar se a senha é válida para um dado nome de usuário, porém ela faz mais que isso.
+      \item Ela inicia uma nova seção.
+      \item Em alguns casos isso significa encerrar uma seção ativa.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Separação entre busca e comando}
+    \begin{itemize}
+      \item Uma função serve ou para informar ou para realizar uma ação, nunca para ambas.
+      \item Tenha-se o seguinte exemplo\footnote{Retirado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}
+      public boolean set(String attribute, String value);
+      if (set("username", "unclebob"))...
+    \end{lstlisting}
+    \begin{itemize}
+      \item \verb|set| atribui um valor a um atributo.
+      \item Porém, como retorna um valor lógico, pode ser inserido dentro de um condicional.
+      \item Para o leitor, a segunda linha pode o falso significado de dizer se \verb|username| tem o valor \verb|unclebob|. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Separação entre busca e comando}
+    \begin{itemize}
+      \item Outro hábito ruim, porém bastante comum é o uso de retorno de códigos de erro.
+      \item Isto é muito comum em linguagens onde não há exceções.
+      \item Em linguagens que implementam exceções, deve-se eliminar os códigos de erro nos retornos de função e utilizar as exceções.
+      \item Códigos de erro obrigam quem recebeu o código de erro a tratá-lo imediatamente.
+      \item Já as exceções dão mais flexibilidade ao programador.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Tratamento de erros}
+    \begin{itemize}
+      \item Martin sugere que o tratamento de erros (geralmente cláusulas \verb|catch| e \verb|finally|) sejam realizadas em funções em separado.
+      \item Isto serve para manter a função tendo responsabilidade única, pois tratar erro é uma responsabilidade.
+      \item Por isso, faz sentido que haja uma função com esse objetivo.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{\textit{Don't Repeat Yourself} (DRY)}
+    \begin{itemize}
+      \item Não apenas Martin, mas muitos outros autores falam sobre a não repetição de código.
+      \item Em termos gerais, este é um bom conselho.
+      \item Entretanto, deve-se tomar cuidado com a criação de abstrações (classes e métodos) desnecessárias.
+      \item As repetições, às vezes, são momentâneas, então criar novas classes e métodos pode gerar complexidade desnecessária ao código. 
+    \end{itemize}
+  \end{frame}
+
+  \section{Comentários}
+
+  \begin{frame}{Comentários}
+    \begin{itemize}
+      \item É comum professores e livros de programação dizerem que códigos bem comentados são melhores que códigos sem comentários.
+      \item Mas, de maneira geral, pra que servem os comentários?
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Comentários}
+    \begin{itemize}
+      \item A resposta mais comum é que os comentários tornam o código mais claro.
+      \item Mas se o seu código é bem escrito e expressivo, então por que precisa de comentários?
+    \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}{Comentários}
+    \begin{itemize}
+      \item Os comentários não devem ser vistos como a ambrosia\footnote{Alimento dos deuses gregos.}, mas como um mal necessário a ser utilizado em situações específicas.
+      \item Eles adicionam mais um elemento dentro do código que deve ter manutenção.
+      \item Pior do que código sujo e sem comentários é código (limpo ou sujo) com comentários errados ou mal colocados. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Comentários}
+    \begin{itemize}
+      \item A justificativa para os comentários surge, na maioria das vezes, para tentar resolver situações onde o programador não conseguiu escrever o código de maneira expressiva.
+      \item Por isso que todo código limpo tende a ter poucos comentários. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Comentários}
+    Tenha-se o seguinte exemplo\footnote{Retirado de Martin, 2009.}:
+    \begin{lstlisting}
+      // Check to see if the employee is eligible for full benefits
+      if ((employee.flags & HOURLY_FLAG) && (employee.age > 65))
+    \end{lstlisting}
+    O comentário acima do código pode ser simplesmente retirado se o código for mais expressivo:
+    \begin{lstlisting}
+      if (employee.isEligibleForFullBenefits())
+    \end{lstlisting}    
+  \end{frame}
+
+  \begin{frame}{Bons comentários}
+    \begin{itemize}
+      \item Nem todo comentário é ruim.
+      \item Pelo contrário, alguns comentários agregam de maneira positiva ao código.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Informações legais}
+    \begin{itemize}
+      \item O primeiro tipo de comentário útil é que trás questões legais sobre o código.
+      \item Em alguns repositórios de código é comum, na parte superior do código, existir dados de \textit{copyright} de marcas e a licença do código em questão.
+      \item A questão é que alguns repositórios colocam a licença toda no arquivo.
+      \item Isto é bastante desnecessário, bastando apenas ter referência à licença.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Explicação de intenções}
+    \begin{itemize}
+      \item Outro tipo útil de comentário é quando, por mais que o código seja claro, o porquê de ter tomado a decisão pode não ser.
+      \item Abaixo há um exemplo de explicação de intenções\footnote{Retirado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}
+      public int compareTo(Object o)
+      {
+        if(o instanceof WikiPagePath) {
+          WikiPagePath p = (WikiPagePath) o;
+          String compressedName = StringUtil.join(names, "");
+          String compressedArgumentName = StringUtil.join(p.names, "");
+          return compressedName.compareTo(compressedArgumentName);
+        }
+        return 1; // we are greater because we are the right type.
+      }
+    \end{lstlisting}
+    O programador explica que quando feita uma comparação, todos os objetos das outras classes devem ser considerados menores.
+  \end{frame}
+
+  \begin{frame}[fragile]{Esclarecimentos}
+    \begin{itemize}
+      \item Em alguns casos (bastante) específicos os comentários podem ajudar a partes do código em que não foi possível torná-lo mais claro.
+      \item O exemplo abaixo mostra uma situação destas\footnote{Adaptado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}
+      public void testCompareTo() throws Exception
+      {
+        WikiPagePath a = PathParser.parse("PageA");
+        WikiPagePath ab = PathParser.parse("PageA.PageB");
+        WikiPagePath b = PathParser.parse("PageB");
+        
+        assertTrue(a.compareTo(a) == 0); // a == a
+        assertTrue(a.compareTo(b) != 0); // a != b
+        assertTrue(ab.compareTo(ab) == 0); // ab == ab
+        assertTrue(a.compareTo(b) == -1); // a < b
+        assertTrue(b.compareTo(a) == 1); // b > a
+      }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Aviso de consequências}
+    \begin{itemize}
+      \item Algumas partes do código podem ser perigosas se executadas sem o devido cuidado.
+      \item Comentários podem ser bastante úteis nesse caso.
+      \item Pode-se observar no exemplo abaixo\footnote{Adaptado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}
+      // Don't run unless you have some time to kill.
+      public void _testWithReallyBigFile()
+      {
+        writeLinesToFile(10000000);
+        response.setBody(testFile);
+        response.readyToSend(this);
+        String responseString = output.toString();
+        assertSubString("Content-Length: 1000000000", responseString);
+        assertTrue(bytesSent > 1000000000);
+      }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}{Bons comentários}
+    \begin{itemize}
+      \item Comentários do tipo \textbf{TODO} também são úteis porque lembram ao programador o que ele deve fazer.
+      \item Há também casos onde o comentário serve para enfatizar a importância de um pedaço do código. Isto evita que outro programador mude aquela parte do código sem levar em contato seus impactos.
+      \item Por último, mas não menos importantes, há os comentários que geram documentação. Estes devem ser utilizados em APIs públicas, não fazendo tanto sentido em métodos e classes privados.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Maus comentários}
+    \begin{itemize}
+      \item Além da saber os comentários que são úteis, é interessante saber quais tipos de comentários são ruins.
+      \item Ao fim, deverá ser percebido que boa parte dos comentários ruins surgem da prática de comentar somente por comentar.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Comentários enigmáticos}
+    \begin{itemize}
+      \item O primeiro tipo de comentário inútil são os comentários que mais parecem enigmas do que comentários em si.
+      \item Tenha-se o exemplo abaixo\footnote{Adaptado de Martin, 2009.}, onde o comentário é um enigma: 
+    \end{itemize}
+    \begin{lstlisting}[basicstyle=\tiny]
+public void loadProperties() {
+  try {
+    String propertiesPath = propertiesLocation + "/" +
+      PROPERTIES_FILE;
+    FileInputStream propertiesStream = 
+      new FileInputStream(propertiesPath);
+    loadedProperties.load(propertiesStream);
+  }
+  catch(IOException e){
+      // No properties files means all defaults are loaded
+  }
+}
+    \end{lstlisting}
+    \begin{itemize}
+      \item A exceção ocorre quando todos os arquivos padrão são carregados. Mas não diz quando e quem faz isso.
+      \item Comentários que fazem o leitor ter de olhar em outros arquivos, não são bons comentários.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Comentários óbvios}
+    \begin{itemize}
+      \item Comentários que explicam o óbvio são como criar urubus pra comer os olhos do programador.
+      \item Além de agregarem nada, ainda ocupam espaço e obrigam os programadores a modificá-los toda vez que o código for modificado.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Comentários redundantes e enganosos}
+    Abaixo, há um exemplo de comentário que revela-se como o mais puro exercício do óbvio\footnote{Adaptado de Martin, 2009.}:
+    \begin{lstlisting}
+// Utility method that returns when this.closed is true. Throws an exception
+// if the timeout is reached.
+public synchronized void waitForClose(final long timeoutMillis) 
+  throws Exception
+{
+  if(!closed){
+    wait(timeoutMillis);
+    if(!closed)
+      throw new Exception(
+        "MockResponseSender could not be closed");
+  }
+}
+    \end{lstlisting}
+    \begin{itemize}
+      \item E fica pior ainda porque o comentário não diz a verdade.
+      \item A função não retorna \textbf{quando} \verb|closed| é verdadeiro, mas \textbf{se} \verb|closed| é verdadeiro.
+      \item Apesar de ser algo sutil, pode fazer toda a diferença.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Comentários}
+    \begin{itemize}
+      \item Robert Martin trás outros diversos exemplos de comentários ruins.
+      \item O que todos eles têm em comum é que ou são gerados pela má qualidade do código ou são completamente inúteis.
+      \item Como linha geral, antes e após escrever um comentário, se pergunte se ele é realmente necessário e porquê ele é necessário.
+    \end{itemize}
+  \end{frame}
+
+  \section{Formatação}
+
+  \begin{frame}{Formatação}
+    \begin{itemize}
+      \item A formatação geral dos arquivos também é bastante importante para a legibilidade do projeto como um todo.
+      \item Arquivos pequenos tendem a ser lidos com mais facilidade.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Densidade vertical}
+    \begin{itemize}
+      \item Um conceito importante é a densidade vertical.
+      \item Quanto mais verticalmente denso, menos linhas em branco um arquivo terá.
+      \item As linhas em branco exercem o importante papel de separar coisas que não são semanticamente ligadas.
+      \item Colocar uma linha em branco após a declaração do pacote ou a importação de classes e/ou funções é interessante para facilitar a visualização.
+      \item Linha em branco entre o bloco de declaração dos atributos e os métodos também é bom para legibilidade. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Densidade vertical}
+    \begin{itemize}
+      \item Não existe uma regra definida e estrita.
+      \item A inserção de linhas em branco deve ser também uma questão de bom senso e, se possível, um padrão para todo projeto.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Distância vertical}
+    \begin{itemize}
+      \item Em linguagens como Pascal e C, as variáveis devem ser declaradas no início das funções.
+      \item Isso não é verdade em diversas outras linguagens.
+      \item Neste caso, é sugerido colocar a declaração da variável próximo de onde ela será utilizada na função.
+      \item Por exemplo, se uma variável será utilizada dentro de um laço de repetição, ela deve ser declarada logo antes do laço ou dentro deste.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Distância vertical}
+    \begin{itemize}
+      \item Exceto em linguagens como Pascal, C e C++, onde as funções/métodos devem ser declarados antes de serem invocados, Robert Martin sugere colocar as funções que serão invocadas logo após a função que as invoca.
+      \item Segundo ele, isso faz com que o código siga a lógica de uma matéria de jornal, onde os conceitos mais gerais são apresentados antes dos conceitos mais específicos.
+      \item Métodos com o mesmo nome sobrecarregados devem estar próximos também para evitar que o leitor tenha que procurar as demais versões do método pelo código.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Densidade horizontal}
+    \begin{itemize}
+      \item Assim como a quantidade de linhas de um arquivo é importante para sua leitura, o tamanho dessas linhas também o é.
+      \item Linhas muito longas são mais difíceis de ler e não se deve confiar na quebra de linhas feitas pelos editores.
+      \item É difícil precisar a quantidade de caracteres por linha, mas geralmente recomenda-se algo entre 100 e 120 linhas.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Formatação}
+    \begin{itemize}
+      \item Equipes mais profissionais geralmente definem um padrão de formatação dos arquivos.
+      \item Empresas, a exemplo do Google, usam programas automatizados que impedem que códigos fora do padrão de formatação sejam adicionados aos seus repositórios. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Formatação}
+    \begin{itemize}
+      \item O Google publica seu padrão de formatação para diversas linguagens. Estes padrões são vistos pela indústria como práticas bastante racionais e servem como base para muitas equipes.
+      \item Extensões para IDEs, como a extensão da RedHat para Java no VS Code, também ajudam os programadores a manter um bom padrão de formatação de código.
+    \end{itemize}
+  \end{frame}
+
+  \section{Conclusão}
+
+  \begin{frame}{Código limpo}
+    \begin{itemize}
+      \item Escrever código limpo exige não apenas bom senso, mas grande dose de disciplina.
+      \item Mais do que isso, exige responsabilidade do desenvolvedor. Ele deve se importar com o código e vê-lo como fruto do seu trabalho.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Referências}
+    \begin{itemize}
+      \item Martin, Robert Cecil. Clean Code: A Handbook of Agile Software Craftsmanship. 2009. Prentice Hall.
+    \end{itemize}
+  \end{frame}
+
+\end{document}
