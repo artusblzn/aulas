@@ -585,6 +585,93 @@ public List<Cell> getFlaggedCells() {
     \end{itemize}
   \end{frame}
 
+  \section{Classes}
+
+  \begin{frame}{Classes}
+    \begin{itemize}
+      \item Assim como as funções (e métodos), as classes também devem ser pequenas.
+      \item E isso tem a ver com o Princípio da Responsabilidade Única (\textit{Single Responsability Principle} - SRP)\footnote{Uma classe só deve ter uma razão para ser mudada}.
+      \item Um alerta para a violação deste princípio ocorre quando há uma classe com um número muito grande de métodos públicos.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Classes}
+    \begin{itemize}
+      \item Robert Martin sugere que toda classe deve ser descrita em 25 palavras.
+      \item Termos como "e", "ou", "mas" e "se" são indicadores de que a classe possui mais de uma responsabilidade.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Classes}
+    \begin{itemize}
+      \item Uma maneira de demonstrar como o SRP funciona é através do exemplo mostrado em Martin (2009).
+      \item Tenhamos uma classe \verb|Sql| abaixo:
+    \end{itemize}
+    \begin{lstlisting}
+public class Sql {
+  public Sql(String table, Column[] columns)
+  public String create()
+  public String insert(Object[] fields)
+  public String selectAll()
+  public String findByKey(String keyColumn, String keyValue)
+  public String select(Column column, String pattern)
+  public String select(Criteria criteria)
+  public String preparedInsert()
+  private String columnList(Column[] columns)
+  private String valuesList(Object[] fields, final Column[] columns)
+  private String selectWithCriteria(String criteria)
+  private String placeholderList(Column[] columns)
+}
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Classes}
+    \begin{itemize}
+      \item A partir da observação da classe \verb|Sql|, nota-se que ela apenas recebe a tabela e um vetor de colunas.
+      \item Então os métodos geram o código SQL requerido.
+      \item O problema nesta classe é que ela pode ser modificada por dois motivos:
+      \begin{enumerate}
+        \item para modificar um comando SQL;
+        \item para adicionar um comando SQL.
+      \end{enumerate}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Classes}
+    A maneira adotada por Martin para resolver o problema é transformando \verb|Sql| em uma classe abstrata e cada comando se tornar uma subclasse como mostrado (em parte) abaixo:
+    \begin{lstlisting}[basicstyle=\tiny]
+abstract public class Sql {
+  public Sql(String table, Column[] columns)
+  abstract public String generate();
+}
+public class CreateSql extends Sql {
+  public CreateSql(String table, Column[] columns)
+  @Override public String generate()
+}
+public class SelectSql extends Sql {
+  public SelectSql(String table, Column[] columns)
+  @Override public String generate()
+}
+public class InsertSql extends Sql {
+  public InsertSql(String table, Column[] columns, Object[] fields)
+  @Override public String generate()
+  private String valuesList(Object[] fields, final Column[] columns)
+}
+public class SelectWithCriteriaSql extends Sql {
+  public SelectWithCriteriaSql(String table, Column[] columns, Criteria criteria)
+  @Override public String generate()
+}
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Classes}
+    \begin{itemize}
+      \item Agora, para implementar um novo comando SQL, basta criar uma nova classe.
+      \item Caso seja necessário modificar um comando, apenas uma classe será modificada.
+    \end{itemize}
+
+  \end{frame}
+
   \section{Comentários}
 
   \begin{frame}{Comentários}

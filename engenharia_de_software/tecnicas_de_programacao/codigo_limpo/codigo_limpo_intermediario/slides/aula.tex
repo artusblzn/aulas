@@ -1,0 +1,396 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+
+\lstset{basicstyle=\scriptsize,language=Java, showstringspaces=false}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\title{Código Limpo Intermediário}
+\author{}
+\date{}
+
+\begin{document}
+
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}
+
+	\section{Lei de Deméter}
+
+  \begin{frame}{Acoplamento}
+    \begin{itemize}
+      \item Um dos objetivos de planejar o \textit{software} é garantir o menor acoplamento possível entre seus componentes.
+      \item O acoplamento é o grau de interdependência entre os componentes de um \textit{software}.
+      \item Um alto grau de acoplamento significa que os objetos não estão se comunicando a nível de \textit{interface}, mas acessando diretamente a implementação de outros objetos e módulos.
+      \item Cada mudança em um componente pode levar a mudança em outros componentes.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Lei de Deméter}
+    \begin{itemize}
+      \item Em 1987, Ian Holland propôs a Lei de Deméter ou Princípio do Menor Conhecimento.
+      \item Este princípio diz, de maneira geral, que um objeto \verb|a| não deve acessar um objeto \verb|c| através de um objeto \verb|b|.
+      \item Abaixo, segue um exemplo de violação deste princípio:
+    \end{itemize}
+    \begin{lstlisting}
+      public void accessC() {
+        String value = this.b.doSomething().getValue();
+      }
+    \end{lstlisting}
+    \begin{itemize}
+      \item No exemplo acima, o objeto dono método accessC, está chamando um método de um objeto \verb|b| (\verb|doSomething|) e, a partir deste retorno, está acessando um método de um objeto \verb|c| que é retornado por \verb|doSomething|.
+    \end{itemize}
+  \end{frame}
+ 
+  \begin{frame}[fragile]{Lei de Deméter}
+    A Lei de Deméter diz que um método \verb|m| de um objeto \verb|a| só pode invocar métodos dos seguintes objetos:
+    \begin{itemize}
+      \item do próprio \verb|a|;
+      \item dos parâmetros de \verb|m|;
+      \item dos objetos instanciados em \verb|m|;
+      \item dos atributos de \verb|a|;
+      \item de variáveis globais acessíveis por \verb|a| e no escopo de \verb|m|.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Lei de Deméter}
+    \begin{itemize}
+      \item A Lei de Deméter também pode ser renomeada para "Lei do Um Ponto".
+      \item Isto significa que não deve haver dois ou mais pontos em um termo (exclui-se da conta o \verb|this.|).
+      \item No exemplo anterior, o objeto \verb|b| deveria ter um método que encapsule a chamada a \verb|getValue| do objeto retornado em \verb|doSomething|.
+      \item A diminuição do acoplamento, neste caso, se dá pelo fato de que \verb|a| não precisará saber os detalhes de implementação de \verb|b|. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Lei de Deméter}
+    \begin{itemize}
+      \item Entretanto, deve-se tomar cuidado com a aplicação da Lei de Deméter.
+      \item Tenha-se o exemplo abaixo\footnote{Retirado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}
+      Options opts = ctxt.getOptions();
+      File scratchDir = opts.getScratchDir();
+      final String outputDir = scratchDir.getAbsolutePath();
+    \end{lstlisting}
+    E sua refatoração:
+    \begin{lstlisting}
+      ctxt.getAbsolutePathOfScratchDirectoryOption();
+    \end{lstlisting}
+    \begin{itemize}
+      \item Isso pode levar a uma explosão na quantidade de métodos dentro de \verb|ctxt|\footnote{Classes muito grandes não são bom sinal.}.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Lei de Deméter}
+    \begin{itemize}
+      \item A refatoração anterior esconde falsamente a implementação de \verb|ctxt|.
+      \item O grande problema desta refatoração é que \verb|getAbsolutePathOfScratchDirectoryOption| é uma consulta por um caminho para um diretório e não a ação desejada.
+      \item O que se deseja é criar um arquivo no diretório.
+      \item Seria mais interessante que \verb|ctxt| tivesse um método \verb|createScratchFileStream|.
+    \end{itemize}
+  \end{frame}
+
+  \section{Tratamento de exceções}
+
+  \begin{frame}{Tratamento de exceções}
+    \begin{itemize}
+      \item Uma das vantagens da utilização de linguagens orientadas a objetos é a capacidade de levantar e capturar exceções.
+      \item As exceções substituem os antigos e nem tão elegantes códigos de erro.
+      \item Entretanto, apenas usar exceções por usar não faz sentido.
+      \item Elas devem ser escritas dentro de um contexto claro e que tornem o código ainda mais limpo.
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Tratamento de exceções}
+    \begin{itemize}
+      \item Uma técnica bastante útil para limpar o código é encapsular em uma função o tratamento de uma dada exceção.
+      \item Abaixo, tem-se um exemplo\footnote{Retirado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}[basicstyle=\tiny]
+public void delete(Page page) {
+  try {
+    deletePageAndAllReferences(page);
+  }
+  catch (Exception e) {
+    logError(e);
+  }
+}
+
+private void deletePageAndAllReferences(Page page) throws Exception {
+  deletePage(page);
+  registry.deleteReference(page.name);
+  configKeys.deleteKey(page.name.makeKey());
+}
+
+private void logError(Exception e) {
+  logger.log(e.getMessage());
+}
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Tratamento de exceções}
+    \begin{itemize}
+      \item Um tipo especial de código de erro é retornar \verb|null| quando não uma consulta retorna vazio.
+      \item Neste caso, a função que chama a consulta deve testar se o retorno é diferente de \verb|null|.
+      \item Em métodos onde há apenas uma consulta, o código pode não ficar tão longo, mas imaginemos que são feitas 4 consultas diferentes dentro de um método. Isto resultará em 4 \verb|if|s aninhados.
+      \item Neste caso, é interessante que os métodos de consulta retornem exceções.
+      \item Caso queiramos uma lista ou outra estrutura de dados similar, linguagens como Java permitem criar listas vazias. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Tratamento de exceções}
+    Tenha-se o exemplo abaixo\footnote{Retirado de Martin, 2009.}:
+    \begin{lstlisting}
+      List<Employee> employees = getEmployees();
+        if (employees != null) {
+          for(Employee e : employees) {
+          totalPay += e.getPay();
+        }
+      }
+    \end{lstlisting}
+    Se \verb|getEmployees| retornar uma lista nula ao invés de \verb|null|, o código poderá ser escrito assim:
+    \begin{lstlisting}
+      List<Employee> employees = getEmployees();
+      for(Employee e : employees) {
+        totalPay += e.getPay();
+      }
+    \end{lstlisting}
+  \end{frame}
+
+  \section{Usando APIs de terceiros}
+
+  \begin{frame}{Encapsular APIs de terceiros}
+    \begin{itemize}
+      \item Qualquer sistema grande, em alguma parte, utilizará alguma biblioteca ou serviço de terceiros.
+      \item Em teoria, isto torna o desenvolvimento mais rápido e seguro\footnote{Há controvérsias\dots, mas não está no nosso escopo discutí-las.}.
+      \item Por outro lado, cria uma dependência do projeto em relação a essa API.
+      \item Para mitigar este problema, pode-se encapsular essa API.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Encapsular APIs de terceiros}
+    Tem-se o exemplo abaixo:
+    \begin{lstlisting}
+      ACMEPort port = new ACMEPort(12);
+      try {
+        port.open();
+      } catch (DeviceResponseException e) {
+        reportPortError(e);
+        logger.log("Device response exception", e);
+      } catch (ATM1212UnlockedException e) {
+        reportPortError(e);
+        logger.log("Unlock exception", e);
+      } catch (GMXError e) {
+        reportPortError(e);
+        logger.log("Device response exception");
+      } finally {
+        ...
+      }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}[fragile]{Encapsular APIs de terceiros}
+    Pode-se encapsular \verb|ACMEPort| em uma classe chamada LocalPort que encapsulará \verb|ACMEPort|, tratando as exceções e dando uma \textit{interface} mais de alto nível\footnote{Exemplo retirado de Martin, 2009.}.
+    \begin{lstlisting}
+      LocalPort port = new LocalPort(12);
+      try {
+        port.open();
+      } catch (PortDeviceFailure e) {
+        reportError(e);
+        logger.log(e.getMessage(), e);
+      } finally {
+        ...
+      }
+    \end{lstlisting}
+    \begin{itemize}
+      \item Este código é muito mais limpo que o anterior.
+      \item Além disso, ele trás a vantagem de que poderemos trocar ACMEPort por outra API sem necessitar modificar a aplicação toda, apenas a classe \verb|LocalPort|.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Encapsular APIs de terceiros}
+    Segue a implementação de \verb|LocalPort|\footnote{Adaptado de Martin, 2009.}:
+    \begin{lstlisting}[basicstyle=\tiny]
+      public class LocalPort {
+        private ACMEPort innerPort;
+
+        public LocalPort(int portNumber) {
+          innerPort = new ACMEPort(portNumber);
+        }
+
+        public void open() {
+          try {
+            innerPort.open();
+          } catch (DeviceResponseException e) {
+            throw new PortDeviceFailure(e);
+          } catch (ATM1212UnlockedException e) {
+            throw new PortDeviceFailure(e);
+          } catch (GMXError e) {
+            throw new PortDeviceFailure(e);
+          }
+        }
+      }
+    \end{lstlisting}
+    Observe também que LocalPort lança uma exceção muito mais "amigável".
+  \end{frame}
+
+  \section{Testes automatizados}
+
+  \begin{frame}{Testes automatizados}
+    \begin{itemize}
+      \item Apesar de ser uma prática já antiga, parte dos desenvolvedores, especialmente os iniciantes, não escreve testes automatizados para seu código.
+      \item Um teste automatizado é um programa que testa o programa.
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{Testes unitários}
+    \begin{itemize}
+      \item Dentre os diversos tipos de testes possíveis, o mais simples (porém não menos importante), é o teste unitário (ou teste de unidade).
+      \item Um teste unitário geralmente é composto por uma classe, onde cada método é um teste.
+      \item Cada teste deve testar um método de uma classe de produção.
+      \item Testar significa passar um conjunto de dados de entrada e verificar se a saída (já conhecida) é correta.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Testes unitários}
+    Abaixo, um exemplo de teste unitário para os métodos de uma classe \verb|Rectangle| em Java:
+    \begin{lstlisting}
+      public class RectangleTests {
+        private final Rectangle rect = new Rectangle(10, 10);
+
+        @Test
+        public void testCalculateArea() {
+            assertEquals(rect.calculateArea(), 100);
+        }
+
+        @Test
+        public void testCalculatePerimeter() {
+            assertEquals(rect.calculatePerimeter(), 40);
+        }
+      }
+    \end{lstlisting}
+  \end{frame}
+
+  \begin{frame}{Testes automatizados}
+    \begin{itemize}
+      \item Os testes, porém não servem apenas para garantir que o código funciona.
+      \item Eles servem para dar segurança ao programador.
+      \item Não é incomum times de desenvolvimento evitarem mexer em código de produção por medo de "quebrá-lo".
+      \item Porém, se o código é coberto por testes, basta realizar uma mudança e executar os testes. Se algum erro for detectado, pode-se corrigí-lo ou simplesmente realizar o \textit{rollback} do código a um ponto estável.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Testes limpos}
+    \begin{itemize}
+      \item Dentro do movimento ágil, os testes automatizados se tornaram cidadãos de primeira classe.
+      \item Isto significa o código do testes deve (ou deveria) estar de acordo com os mais altos padrões de qualidade.
+      \item Os testes, assim como código de produção, também mudam com o tempo.
+      \item Eles devem refletir também as necessidades de negócio.
+      \item Como não há testes dos testes, tem-se uma situação bastante sensível porque pode haver alguma insegurança em mexer nos testes.
+      \item Por isso, é necessário que o código dos testes seja extremamente limpo. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Testes limpos}
+    \begin{itemize}
+      \item Testes difíceis de ler podem ser um grande problema.
+      \item Tenha-se o exemplo abaixo\footnote{Adaptado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}[basicstyle=\tiny]
+      public void testGetPageHieratchyAsXml() throws Exception
+      {
+        crawler.addPage(root, PathParser.parse("PageOne"));
+        crawler.addPage(root, PathParser.parse("PageOne.ChildOne"));
+
+        request.setResource("root");
+        request.addInput("type", "pages");
+        Responder responder = new SerializedPageResponder();
+        SimpleResponse response = (SimpleResponse)
+          responder.makeResponse(new FitNesseContext(root), request);
+        String xml = response.getContent();
+
+        assertEquals("text/xml", response.getContentType());
+        assertSubString("<name>PageOne</name>", xml);
+        assertSubString("<name>ChildOne</name>", xml);
+      }
+    \end{lstlisting}
+    Note como esse teste é um tanto complicado de ler.
+  \end{frame}
+
+  \begin{frame}[fragile]{Testes limpos}
+    \begin{itemize}
+      \item Após a refatoração abaixo, ele torna-se muito mais fácil de ser lido\footnote{Adaptado de Martin, 2009.}:
+    \end{itemize}
+    \begin{lstlisting}[basicstyle=\tiny]
+      public void testGetPageHierarchyAsXml() throws Exception {
+        makePages("PageOne", "PageOne.ChildOne");
+
+        submitRequest("root", "type:pages");
+
+        assertResponseIsXML();
+        assertResponseContains(
+          "<name>PageOne</name>", "<name>ChildOne</name>"
+        );
+      }
+    \end{lstlisting}
+    \begin{itemize}
+      \item Agora é muito mais simples entender o que se passa no teste.
+      \item O padrão adotado por esse teste é conhecido como BUILD-OPERATE-CHECK. 
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}[fragile]{Testes limpos}
+    \begin{itemize}
+      \item Outro ponto interessante sobre testes é que eles permitem ao leitor conhecer o código de produção sem lê-lo.
+      \item Tenha-se um dos testes da classe \verb|Rectangle|:
+    \end{itemize}
+    \begin{lstlisting}
+      private final Rectangle rect = new Rectangle(10, 10);
+
+      @Test
+      public void testCalculateArea() {
+          assertEquals(rect.calculateArea(), 100);
+      }
+    \end{lstlisting}
+    \begin{itemize}
+      \item Mesmo sem conhecer o código de \verb|Rectangle|, sabe-se como \verb|calculateArea| deve comportar-se.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{F.I.R.S.T}
+    Martin sugere que os testes sigam regras de acordo com o acrônimo F.I.R.S.T:
+    \begin{itemize}
+      \item \textbf{F}ast - os códigos não devem rodar rapidamente. Se demorarem muito, serão rodados menos frequentemente.
+      \item \textbf{I}ndependent - um teste não deve depender de outro.
+      \item \textbf{R}epeatable - os testes devem ser repetíveis em qualquer ambiente (produção, QA, desenvolvimento).
+      \item \textbf{S}elf-Validating - os testes devem ter uma saída lógica (verdadeiro ou falso).
+      \item \textbf{T}imely - os testes devem ser escritos antes do código em produção.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Referências}
+    \begin{itemize}
+      \item Martin, Robert Cecil. Clean Code: A Handbook of Agile Software Craftsmanship. 2009. Prentice Hall.
+      \item Wikipedia. Demeter Law. Acessado em: 23 outubro de 2023.
+    \end{itemize}
+  \end{frame}
+
+\end{document}
