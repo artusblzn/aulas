@@ -1,0 +1,260 @@
+\documentclass[11pt]{beamer}
+\mode<presentation>
+\let\Tiny=\tiny
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{mydef}{Definição}
+\newtheorem{myexample}{Exemplo}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+
+\lstset{basicstyle=\scriptsize,language=Java, showstringspaces=false}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\title{Introdução aos Sistemas de Bancos de Dados}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item Dados é um tema antigo, porém bastante atual.
+        \item A ascenção da Inteligência Artificial e dos métodos de análise de dados, mesmo que com resultados bastante discutíveis, é assunto central tanto no mundo acadêmico como no meio empresarial e nos governos do mundo todo.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item Livros como \textbf{Moneyball: The Art of Winning an Unfair Game}\footnote{Adaptado para o cinema.} tornaram-se as bíblias modernas.
+        \item Um artigo de Allen Barra para o The Guardian\footnote{Moneyball: was the book that changed baseball built on a false premise? em 21 de abril de 2017.} faz uma crítica bastante severa ao livro e polemiza se a abordagem baseada em estatísticas apresentada realmente condiz com a realidade.
+        \item A própria realidade mostrou que alguns pontos do livro não são verdades absolutas.
+        \item O método Moneyball se opõe a \textit{sacrifice bunts} e \textit{sacrifice flys}\footnote{Jogadas do beisebol.}, mas o Arizona Diamondbacks chegou a World Series, coisa que o inventor do método nunca conseguiu, usando \textit{bunts}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item Dizer que está tomando decisões baseadas em evidências é um grande negócio.
+        \item Na prática, a tomada de decisões utilizando dados é muito mais complexa, cara e difícil que o apresentado.
+        \item Há também o agravante que, mesmo que o modelo adotado seja correto, o resultado não seja o esperado, pois sempre há riscos e, dada a complexidade do mundo real, é impossível mapear todas as variáveis possíveis.
+        \item Um termo bem sugestivo na estatística, e que mostra como a incerteza ocorre, é \textbf{esperança}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item A análise de dados possui dois problemas de grande complexidade.
+        \item O primeiro deles é estabelecer um modelo matemático correto.
+        \item Livros de ciências dos dados colocam como requisito não apenas o conhecimento em computação ou engenharia, mas fundamentos sólidos em matemática e estatística.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item O segundo problema é os sistemas de bancos de dados.
+        \item Modelos estatísticos necessitam de volumes massivos de dados.
+        \item Coletar e organizar estes dados é um grande desafio e não deve ser tratado de maneira simplória.
+        \item Até mesmo sistemas pequenos podem carregar imensa complexidade.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item Como dito, as bases de dados não são coisas novas. Pelo contrário, já existem a milênios.
+        \item A República Romana já armazenava os dados dos seus cidadãos através do censo. Isto permitia classificá-los de acordo com suas posses.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    Antes de continuar a discussão, porém, é necessário definir o que é uma base de dados:
+    \begin{mydef}
+        Uma base de dados é uma coleção de dados relacionados que é projetada, construída e povoada a partir de dados logicamente coerentes entre si, com propósito específico e que representam algum aspecto do mundo.\footnote{ELMASRI E NAVATHE, 2011.}
+    \end{mydef}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item Apesar da definição, não é raro chamarmos por banco (ou base) de dados os Sistemas de Gerenciamento de Bancos de Dados (SGBDs).
+        \item Um SGBD é um \textit{software} que fornece serviços para "definir, construir, manipular e compartilhar bases de dados com vários usuários e aplicações".\footnote{ELMASRI E NAVATHE, 2011.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item Por \textbf{definir} tem-se a definição dos metadados.
+        \item Metadados são as especificações de tipos, estruturas e restrições dos dados.
+        \item Por exemplo, tenha-se um sistema acadêmico, a definição de quais dados dos alunos serão armazenados e que o nome do aluno deve ser uma cadeia de caracteres (\textit{string}) de até 300 caracteres são exemplos de metadados.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução aos Sistemas de Bancos de Dados}
+    \begin{itemize}
+        \item A \textbf{construção} da base de dados é o armazenamento de dados segundo sua especificação em um ambiente controlado pelo SGBD.
+        \item A \textbf{manipulação} da base de dados corresponde às operações CRUD (\textit{Create}, \textit{Retrieve}, \textit{Update} e \textit{Delete}).
+        \item O \textbf{compartilhamento} da base de dados envolve permitir acesso de diversos usuário e aplicações à base concorrentemente.
+    \end{itemize}
+\end{frame}
+
+\section{SGBD como camada de abstração}
+
+\begin{frame}{Sistemas de Gerenciamento de Bancos de Dados}
+    \begin{itemize}
+        \item Do ponto de vista macro, os SGBDs fornecem uma camada de abstração entre as aplicações e as bases de dados.
+        \item A aplicação não necessita conhecer como os dados estão armazenados em baixo nível, ela apenas solicita os dados aos SGBD.
+        \item O projeto do banco de dados está desacoplado da aplicação, sendo necessário apenas o mapeamento entre os dados organizados no banco e as variáveis ou objetos da aplicação.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sistemas de Gerenciamento de Bancos de Dados}
+    \begin{itemize}
+        \item O SGBD possui um catálogo de dados do banco.
+        \item Este catálogo (metadados) é uma estrutura de dados que fornece informações sobre como os dados estão logicamente organizados.
+        \item Como os SGBDs são agnósticos em relação à base de dados, o catálogo de dados é bastante genérico e flexível, permitindo a modelagem de diferentes base de dados, porém ainda submissas ao paradigma adotado pelo SGBD.
+    \end{itemize}
+\end{frame}
+
+\subsection{Transações}
+
+\begin{frame}{Transações}
+    \begin{itemize}
+        \item Outro conceito importante implementado pelos SGBDs modernos é o de transação.
+        \item Uma transação é um conjunto de ações que envolve um ou mais acessos ao banco de dados, como a leitura ou modificação dos registros.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{ACID}
+    \begin{itemize}
+        \item É desejável que os SGBDs garantam que suas transações atendam às propriedades ACID (\textit{Atomicity}, \textit{Consistency}, \textit{Isolation} e \textit{Durability}).
+        \item Nem todos os SGBDs garantem as propriedades.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Atomicidade}
+    \begin{itemize}
+        \item Atomicidade é uma propriedade desejável para as transações.
+        \item Uma transação atômica é uma transação que ou é executada por inteiro ou não é executada.
+        \item Em outras palavras, a transação não deve ser executada "pela metade".
+        \item Imagine, por exemplo, uma operação de transferência de dinheiro, onde apenas o ato de retirar de uma conta é executado, mas a inserção do valor em outra não.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Consistência}
+    \begin{itemize}
+        \item O SGBD também deve buscar manter o base de dados em estado consistente.
+        \item Isto significa que os dados não devem assumir valores que violem as regras de negócio.
+        \item Caso uma transação leve o banco de dados a um estado inconsistente, ela deve ser desfeita.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Isolamento}
+    \begin{itemize}
+        \item As transações são, principalmente em ambientes concorrentes (onde há múltiplos usuários requisitando e modificando dados da base), preferencialmente isoladas.
+        \item Isto significa que se duas transações desejam modificar um determinado dado, uma deve ser executada apenas após a primeira terminar.
+        \item Caso contrário, se a primeira transação falhar e tiver de ser desfeita, poderá ser impossível retornar ao estado inicial.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Durabilidade}
+    \begin{itemize}
+        \item Por fim, é esperado que toda transação tenha efeito persistente.
+        \item Isto quer dizer que a aplicação deve esperar que em caso de sucesso, a transação é gravada em disco (ou outro meio de armazenamento persistente).
+    \end{itemize}
+\end{frame}
+
+\subsection{Serviços do SGBD}
+
+\begin{frame}{Serviços do SGBD}
+    \begin{itemize}
+        \item O SGBD, no entanto é mais do que uma simples camada de abstração.
+        \item Ele é um servidor e, por isso, provê uma série de serviços.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Controle de redundância}
+    \begin{itemize}
+        \item O primeiro deles é o controle de redundância.
+        \item Tenha-se uma universidade privadas e seus registros.
+        \item Os setores acadêmico e financeiro devem possuir os dados de um mesmo estudante.
+        \item Estes dados tendem a ser replicados (redundantes).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Controle de redundância}
+    \begin{itemize}
+        \item Sem um SGBD, qualquer modificação em um dado redundante levará a duplo esforço e abre a possibilidade para inconsistência de dados, ou seja, dados que deveriam ser idênticos, mas não são.
+        \item Imagine que um aluno desta universidade se matricule em mais disciplinas.
+        \item Se estes dados, alterados no setor acadêmico, não forem também modificados no setor financeiro, haverá inconsistência dos dados e o valor da mensalidade poderá não ser o correto.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Controle de redundância}
+    \begin{itemize}
+        \item Os SGBDs, especialmente os relacionais, permitem o projeto de bancos de dados normalizados, ou seja, sem redundâncias.
+        \item Entretanto, em alguns casos, será necessário recorrer à desnormalização para melhoria na performance de consultas.
+        \item Isto significa estabelecer uma redundância controlada.
+        \item É esperado de um bom SGBD ferramentas para lidar com esta redundância.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Armazenamento persistente de objetos}
+    \begin{itemize}
+        \item Alguns SGBDs possuem suporte ao armazenamento de objetos.
+        \item Apesar de ser uma característica comum aos SGBDs orientados a objetos, SGBDs relacionais já implementam técnicas e ferramentas que aproximam o paradigma relacional ao orientados a objeto, sendo conhecidos como SGBDs objeto-relacionais.
+        \item Deste modo, reduz-se o problema de divergência de impedância causado pela diferença entre o paradigma orientado a objetos, presente na maior parte das aplicações, e o paradigma relacional, presente nos SGBDs mais usados.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Otimização de consultas}
+    \begin{itemize}
+        \item Os SGBDs permitem a otimização de consultas através de diversas técnicas.
+        \item A primeira delas é a indexação através de tabelas \textit{hash} ou árvore.
+        \item Outra técnica é o uso de \textit{buffers} ou \textit{caches} para armazenar registros e índices na memória, reduzindo o \textit{overhead} da busca em disco.
+        \item Por último, os SGBDs também possuem otimizações de baixo nível da linguagem SQL.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Backup} e recuperação de falhas}
+    \begin{itemize}
+        \item Falhas de \textit{hardware} e \textit{software} são inevitáveis.
+        \item É esperado de todo bom SGBD ferramentas para implementação de políticas de \textit{backup} e recuperação de falhas.
+    \end{itemize}
+\end{frame}
+
+\section{Quando não usar SGBDs}
+
+\begin{frame}{Quando não usar SGBDs}
+    \begin{itemize}
+        \item Haverá casos onde usar um SGBD não é recomendado.
+        \item Estes são casos específicos.
+        \item Principalmente em sistemas embarcados, onde há enormes restrições de espaço e performance, os SGBDs podem não ser bem vindos.
+        \item Como tudo na computação, a decisão dependerá do contexto, mais especificamente dos requisitos não-funcionais.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Referências}
+    \begin{itemize}
+        \item Elmasri, Ramez e Navathe, Shamkant. Sistemas de banco de dados. 2011. 6ª ed. Pearson.
+        \item Barra, Allen. Moneyball: was the book that changed baseball built on a false premise?. The Guardian de 21 de abril de 2017.
+    \end{itemize}
+\end{frame}
+
+\end{document}
